@@ -1,0 +1,39 @@
+---
+/* TODO: replace placeholder copy */
+const highlights = [
+  { role: "Senior Engineer", detail: "Led migration of a monolith to modular services." },
+  { role: "Engineer", detail: "Built internal tooling used across three teams." },
+];
+---
+<section class="experience">
+  <h2>Experience</h2>
+  <ul class="highlights">
+    {highlights.map((h) => (
+      <li class="highlight">
+        <strong>{h.role}</strong>
+        <p>{h.detail}</p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .highlights {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .highlight {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-sm);
+  }
+  .highlight p {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+  }
+</style>
