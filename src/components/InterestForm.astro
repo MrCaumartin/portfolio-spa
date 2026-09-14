@@ -1,0 +1,51 @@
+<section class="interest">
+  <h2>Get in touch</h2>
+  <p class="coming-soon">Coming soon — backend in progress.</p>
+  <form class="interest-form">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" required disabled />
+
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required disabled />
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" required disabled></textarea>
+
+    <button type="submit" disabled>Send</button>
+  </form>
+</section>
+
+<style>
+  .coming-soon {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+  .interest-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .interest-form input,
+  .interest-form textarea {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    padding: var(--space-2);
+    font: inherit;
+  }
+  .interest-form button {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-weight: 600;
+  }
+  .interest-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>
