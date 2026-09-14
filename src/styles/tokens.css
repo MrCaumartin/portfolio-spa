@@ -1,0 +1,37 @@
+/*
+  Design tokens: the only place raw color/size/font values should appear.
+  Components reference these variables, never literals.
+*/
+:root {
+  /* Color */
+  --color-bg: #0f1115;
+  --color-surface: #171a21;
+  --color-text: #e8eaed;
+  --color-text-muted: #9aa0a6;
+  --color-accent: #5b8def;
+  --color-border: #2a2e37;
+
+  /* Spacing scale (4px base, ~1.5x steps) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.5rem;
+  --line-height-base: 1.5;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

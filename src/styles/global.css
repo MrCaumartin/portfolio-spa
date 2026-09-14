@@ -1,0 +1,29 @@
+@import "./tokens.css";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--space-4);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+section {
+  padding: var(--space-7) var(--space-5);
+  max-width: 720px;
+  margin: 0 auto;
+}
