@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
@@ -9,6 +9,18 @@ export default defineConfig({
     defaultLocale: 'en',
     routing: { prefixDefaultLocale: false }
   },
+  fonts: [
+    {
+      name: 'JetBrains Mono',
+      cssVariable: '--font-sans',
+      provider: fontProviders.fontsource(),
+      weights: [500, 700, 800],
+      styles: ['normal'],
+      subsets: ['latin'],
+      fallbacks: ['ui-monospace', 'monospace'],
+      optimizedFallbacks: true
+    }
+  ],
   integrations: [
     sitemap({
       i18n: {

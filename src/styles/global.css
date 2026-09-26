@@ -1,5 +1,10 @@
 @import './tokens.css';
 
+:root {
+  color-scheme: dark;
+  accent-color: var(--color-accent);
+}
+
 *,
 *::before,
 *::after {

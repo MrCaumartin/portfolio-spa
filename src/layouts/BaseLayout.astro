@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 import { languages, localePaths, t, type Lang } from '../i18n';
 
@@ -49,7 +50,8 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content={`var(--theme-color)`} />
+    <meta name="theme-color" content="#12141c" />
+    <meta name="color-scheme" content="dark" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
@@ -79,14 +81,17 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={meta.imageAlt} />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <Font cssVariable="--font-sans" preload={[{ weight: '800' }]} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap"
-      rel="stylesheet"
-    />
+  </head>
+  <body>
+    <a class="skip-link visually-hidden" href="#content">
+      {a11y.skipLink}
+    </a>
+    <slot />
     {gaId && (
       <>
         <script
@@ -104,11 +109,5 @@ const jsonLd = {
         </script>
       </>
     )}
-  </head>
-  <body>
-    <a class="skip-link visually-hidden" href="#content">
-      {a11y.skipLink}
-    </a>
-    <slot />
   </body>
 </html>
