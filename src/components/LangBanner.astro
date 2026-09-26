@@ -1,7 +1,11 @@
 ---
-import { langBanner as banner, localePaths } from '../i18n';
+import { langBanner, localePaths, type Lang } from '../i18n';
 
-const target = 'fr';
+interface Props {
+  target: Lang;
+}
+const { target } = Astro.props;
+const banner = langBanner[target];
 ---
 
 <aside
@@ -27,7 +31,7 @@ const target = 'fr';
   (() => {
     const el = document.getElementById('lang-banner');
     const target = el.dataset.target;
-    const key = 'lang-banner-dismissed';
+    const key = `lang-banner-dismissed-${target}`;
     let dismissed = false;
     try {
       dismissed = localStorage.getItem(key) === '1';
@@ -37,9 +41,8 @@ const target = 'fr';
     const langs = navigator.languages?.length
       ? navigator.languages
       : [navigator.language];
-    if (dismissed || !langs.some((l) => l.toLowerCase().startsWith(target))) {
-      return;
-    }
+    const prefersFr = langs.some((l) => l.toLowerCase().startsWith('fr'));
+    if (dismissed || prefersFr !== (target === 'fr')) return;
     el.hidden = false;
     el.querySelector('button').addEventListener('click', () => {
       el.hidden = true;

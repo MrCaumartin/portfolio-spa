@@ -228,10 +228,25 @@ const strings: Record<Lang, Strings> = { en, fr };
 
 export const t = (lang: Lang): Strings => strings[lang];
 
-// Shown on EN pages to French-preferring visitors.
-export const langBanner = {
-  label: 'Suggestion de langue',
-  text: 'Ce site est aussi offert en français.',
-  link: 'Voir en français →',
-  close: 'Fermer'
+interface BannerStrings {
+  label: string;
+  text: string;
+  link: string;
+  close: string;
+}
+
+// Keyed by target language; written in that language.
+export const langBanner: Record<Lang, BannerStrings> = {
+  en: {
+    label: 'Language suggestion',
+    text: 'This site is also available in English.',
+    link: 'View in English →',
+    close: 'Dismiss'
+  },
+  fr: {
+    label: 'Suggestion de langue',
+    text: 'Ce site est aussi offert en français.',
+    link: 'Voir en français →',
+    close: 'Fermer'
+  }
 };
