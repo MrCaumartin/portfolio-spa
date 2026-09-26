@@ -18,7 +18,7 @@ const { meta } = t(lang);
 ---
 
 <BaseLayout title={meta.title} description={meta.description} lang={lang}>
-  {lang === 'en' && <LangBanner target="fr" />}
+  {lang === 'en' && <LangBanner />}
   <Header lang={lang} />
   <main id="content" tabindex="-1">
     <Hero lang={lang} />

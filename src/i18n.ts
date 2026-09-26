@@ -16,7 +16,7 @@ export interface Strings {
     locale: string;
     imageAlt: string;
   };
-  notFound: { title: string; heading: string; body: string; back: string };
+  notFound: { heading: string; body: string; back: string };
   hero: { tagline: string };
   about: { heading: string; p1: string; p2: string };
   services: { heading: string; items: Item[] };
@@ -31,7 +31,6 @@ export interface Strings {
     send: string;
   };
   a11y: { skipLink: string; langNav: string };
-  banner: { label: string; text: string; link: string; close: string };
   switcher: { href: string; label: string; lang: Lang };
 }
 
@@ -45,7 +44,6 @@ const en: Strings = {
     imageAlt: 'Alex Caumartin — Full stack developer'
   },
   notFound: {
-    title: 'Page not found — Alex Caumartin',
     heading: 'Page not found',
     body: "The page you're looking for doesn't exist or has moved.",
     back: 'Back to home'
@@ -127,12 +125,6 @@ const en: Strings = {
     send: 'Send'
   },
   a11y: { skipLink: 'Skip to main content', langNav: 'Language' },
-  banner: {
-    label: 'Language suggestion',
-    text: 'This site is also available in English.',
-    link: 'View in English →',
-    close: 'Dismiss'
-  },
   switcher: { href: '/fr/', label: 'Français', lang: 'fr' }
 };
 
@@ -146,7 +138,6 @@ const fr: Strings = {
     imageAlt: 'Alex Caumartin — Développeur full-stack'
   },
   notFound: {
-    title: 'Page introuvable — Alex Caumartin',
     heading: 'Page introuvable',
     body: "La page que vous cherchez n'existe pas ou a été déplacée.",
     back: "Retour à l'accueil"
@@ -230,15 +221,17 @@ const fr: Strings = {
     send: 'Envoyer'
   },
   a11y: { skipLink: 'Passer au contenu principal', langNav: 'Langue' },
-  banner: {
-    label: 'Suggestion de langue',
-    text: 'Ce site est aussi offert en français.',
-    link: 'Voir en français →',
-    close: 'Fermer'
-  },
   switcher: { href: '/', label: 'English', lang: 'en' }
 };
 
-export const strings: Record<Lang, Strings> = { en, fr };
+const strings: Record<Lang, Strings> = { en, fr };
 
 export const t = (lang: Lang): Strings => strings[lang];
+
+// Shown on EN pages to French-preferring visitors.
+export const langBanner = {
+  label: 'Suggestion de langue',
+  text: 'Ce site est aussi offert en français.',
+  link: 'Voir en français →',
+  close: 'Fermer'
+};

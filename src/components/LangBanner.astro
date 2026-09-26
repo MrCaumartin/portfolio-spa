@@ -1,11 +1,7 @@
 ---
-import { localePaths, t, type Lang } from '../i18n';
+import { langBanner as banner, localePaths } from '../i18n';
 
-interface Props {
-  target: Lang;
-}
-const { target } = Astro.props;
-const { banner } = t(target);
+const target = 'fr';
 ---
 
 <aside
