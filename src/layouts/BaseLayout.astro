@@ -48,6 +48,7 @@ const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
         <script is:inline define:vars={{ gaId }}>
           window.dataLayer = window.dataLayer || [];
+          /* eslint-disable prefer-rest-params -- gtag needs arguments */
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', gaId);

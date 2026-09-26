@@ -1,16 +1,12 @@
-// ponytail: minimal Astro ESLint config, stdlib-first
-import typescript from '@typescript-eslint/parser'
-import astro from 'eslint-plugin-astro'
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import astro from 'eslint-plugin-astro';
+import prettier from 'eslint-config-prettier';
 
 export default [
-  {
-    files: ['**/*.astro'],
-    languageOptions: {
-      parser: typescript,
-      parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 'latest',
-      },
-    },
-  },
-]
+  { ignores: ['dist/', '.astro/', 'node_modules/'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...astro.configs.recommended,
+  prettier
+];
