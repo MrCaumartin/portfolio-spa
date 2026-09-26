@@ -41,7 +41,7 @@ const en: Strings = {
       'Full stack developer specializing in distributed systems, accelerated by AI tooling.',
     jobTitle: 'Full Stack Developer',
     locale: 'en_CA',
-    imageAlt: 'Alex Caumartin — Full stack developer'
+    imageAlt: 'Alex Caumartin, with fox logo'
   },
   notFound: {
     heading: 'Page not found',
@@ -135,7 +135,7 @@ const fr: Strings = {
       "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA.",
     jobTitle: 'Développeur full-stack',
     locale: 'fr_CA',
-    imageAlt: 'Alex Caumartin — Développeur full-stack'
+    imageAlt: 'Alex Caumartin, avec logo de renard'
   },
   notFound: {
     heading: 'Page introuvable',
