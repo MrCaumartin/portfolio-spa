@@ -2,9 +2,9 @@
 
 ## Purpose
 
-A personal portfolio single-page site for caumartin.alex@gmail.com:
-summarizes skills/experience and captures interest via a form. Optimized
-for near-zero hosting cost.
+A bilingual (EN/FR) personal portfolio single-page site for
+caumartin.alex@gmail.com: presents background and services and captures
+interest via a form. Optimized for near-zero hosting cost.
 
 ## Out of scope (see `../../../../platform/SEED.md`)
 
@@ -23,47 +23,58 @@ exists and exposes an endpoint to point at.
 ## Structure
 
 ```
+astro.config.mjs             # site URL, i18n, sitemap, self-hosted fonts
 src/
-  pages/index.astro        # single page, composes sections below
+  i18n.ts                    # all copy, typed per language (en, fr)
+  pages/
+    index.astro              # English (/)
+    fr/index.astro           # French (/fr/)
+    404.astro
+  layouts/BaseLayout.astro   # head meta, canonical/hreflang, OG, JSON-LD, GA
   components/
+    HomePage.astro           # composes the sections below for a language
+    Header.astro             # language switcher
+    LangBanner.astro         # "Voir en français" suggestion on /
     Hero.astro
-    Skills.astro
-    Experience.astro
+    About.astro
+    Services.astro
+    Process.astro
     InterestForm.astro
     Footer.astro
   styles/
-    tokens.css              # :root custom properties (design tokens)
-    global.css               # base element styles, uses tokens
-public/
-  favicon, static assets
+    tokens.css               # :root custom properties (design tokens)
+    global.css               # layered base styles, uses tokens
+public/                      # favicons, og-image, manifest, robots.txt
 .env.example                 # documents PUBLIC_GA_MEASUREMENT_ID
 ```
 
+## Languages
+
+- English at `/`, French at `/fr/` (Astro i18n, no default-locale prefix).
+- No automatic redirect. Visitors reach their language through absolute
+  `hreflang` links and sitemap alternates (search), the header switcher,
+  and a dismissible suggestion banner on `/` for `fr*` browsers.
+
 ## Design tokens (`tokens.css`)
 
-A single `:root` block, commented, covering:
-
-- Color: `--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-border`
-- Spacing scale: `--space-1` … `--space-8` (e.g. 4px base, doubling/1.5x steps)
-- Typography: `--font-sans`, `--font-size-sm/base/lg/xl/2xl`, `--line-height-base`
-- Radius/shadow: `--radius-sm/md`, `--shadow-sm`
+A single `:root` block covering color, a spacing scale (`--space-1` …
+`--space-8`), font sizes, line height and radius. The font family
+variable `--font-sans` is provided by Astro's fonts API (JetBrains Mono).
 
 Every component styles from these variables only — no hardcoded colors/
-sizes in component `<style>` blocks. This is the "easy to follow"
-guideline: one token file is the whole design system.
+sizes in component `<style>` blocks.
 
 ## Content
 
-Placeholder copy for bio, skills list (tags/cards), and experience
-highlights, clearly marked `TODO: replace placeholder copy` for the user
-to fill in after scaffolding.
+Hero, About, Services, Process and the interest form. All copy lives in
+`src/i18n.ts`, one typed object per language.
 
 ## Interest form
 
 - Fields: name, email, message. Client-side required/email validation
   (native HTML5 `required`/`type="email"`, no JS validation library).
-- Submit button rendered `disabled`, with a small "Coming soon — backend
-  in progress" note.
+- Fields sit in a `disabled` `<fieldset>`, with a "Coming soon — backend
+  in progress" note linked via `aria-describedby`.
 - `<form>` markup already has the right `name` attributes so wiring it to
   a real endpoint later (fetch POST to the future `platform` gateway) is
   a small follow-up change, not a redesign.
@@ -71,14 +82,22 @@ to fill in after scaffolding.
 ## Analytics
 
 - GA4 via the standard `gtag.js` snippet.
-- Script tag uses `async`, injected in `<head>` per performance guidance
-  (non-blocking).
+- Script tag uses `async`, placed at the end of `<body>` (non-blocking).
 - Measurement ID read from `import.meta.env.PUBLIC_GA_MEASUREMENT_ID`
   (Astro/Vite convention: `PUBLIC_` prefix exposes it client-side).
   Sourced from a local `.env` (gitignored); `.env.example` documents the
   variable name with a placeholder value.
 - If the env var is unset (e.g. local dev), skip rendering the snippet
   entirely rather than sending a broken/placeholder ID.
+
+## SEO
+
+- `site` in `astro.config.mjs` drives canonical, `og:url` and absolute
+  `hreflang` URLs.
+- `@astrojs/sitemap` emits `sitemap-index.xml` with `xhtml:link`
+  alternates; `robots.txt` points to it.
+- Open Graph/Twitter image (`public/og-image.png`) and JSON-LD
+  `Person` + `WebSite`.
 
 ## Build & deploy
 

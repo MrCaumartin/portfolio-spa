@@ -1,6 +1,7 @@
 # Portfolio SPA
 
-Static Astro site. Build: `npm ci && npm run build` (outputs to `dist/`).
+Static Astro site (English at `/`, French at `/fr/`). Build:
+`npm ci && npm run build` (outputs to `dist/`).
 
 ## Local dev
 
@@ -9,6 +10,18 @@ Static Astro site. Build: `npm ci && npm run build` (outputs to `dist/`).
 
 Optionally copy `.env.example` to `.env` and set `PUBLIC_GA_MEASUREMENT_ID`
 to see the GA snippet locally.
+
+## Scripts
+
+- `npm run lint` — ESLint (JS/TS/Astro)
+- `npm run format` / `npm run format:check` — Prettier
+- `npm run check` — `astro check` type checking
+
+## Site URL
+
+The production URL is set via `site` in `astro.config.mjs`. It drives
+canonical links, `og:url`, absolute `hreflang` links and the sitemap
+(`sitemap-index.xml`). Update it there if the domain changes.
 
 ## Railway deployment
 
