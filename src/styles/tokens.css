@@ -4,12 +4,16 @@
 */
 :root {
   /* Color */
-  --color-bg: #0f1115;
-  --color-surface: #171a21;
-  --color-text: #e8eaed;
-  --color-text-muted: #9aa0a6;
-  --color-accent: #5b8def;
-  --color-border: #2a2e37;
+  --color-bg: #12141c;
+  --theme-color: #12141c;
+
+  /* Performance */
+  --font-display: swap;
+  --color-surface: #191c26;
+  --color-text: #EDEAE2;
+  --color-text-muted: #8b90a0;
+  --color-accent: #35c9b8;
+  --color-border: #2a2e3a;
 
   /* Spacing scale (4px base, ~1.5x steps) */
   --space-1: 4px;
@@ -22,16 +26,17 @@
   --space-8: 64px;
 
   /* Typography */
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.75rem;
   --font-size-2xl: 2.5rem;
+  --font-size-display: clamp(3rem, 10vw, 6rem);
   --line-height-base: 1.5;
 
   /* Shape */
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
 }

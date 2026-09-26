@@ -4,20 +4,45 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
+  lang?: 'en' | 'fr';
 }
+
+const descriptions = {
+  en: 'Full stack developer specializing in distributed systems, accelerated by AI tooling.',
+  fr: "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA.",
+};
 
 const {
   title,
-  description = "Software engineer building pragmatic, well-tested systems.",
+  lang = 'en',
+  description = descriptions[lang],
 } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
 ---
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={`var(--theme-color)`} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={`${baseUrl}/`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${baseUrl}/`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href="/" />
+    <link rel="alternate" hreflang="fr" href="/fr/" />
+    <link rel="alternate" hreflang="x-default" href="/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
     {gaId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
@@ -28,6 +53,13 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
           gtag('config', gaId);
         </script>
       </>
+    )}
+    {lang === 'en' && (
+      <script is:inline>
+        if (!localStorage.getItem('lang-pref') && navigator.language.startsWith('fr')) {
+          window.location.replace('/fr/');
+        }
+      </script>
     )}
   </head>
   <body>

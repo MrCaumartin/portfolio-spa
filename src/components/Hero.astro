@@ -1,19 +1,55 @@
+---
+interface Props { lang?: 'en' | 'fr' }
+const { lang = 'en' } = Astro.props;
+const copy = {
+  en: { tagline: 'Full stack developer specializing in distributed systems, accelerated by AI tooling.' },
+  fr: { tagline: "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA." },
+}[lang];
+---
 <section class="hero">
   <h1>Alex Caumartin</h1>
-  <!-- TODO: replace placeholder copy -->
-  <p class="tagline">Software engineer building pragmatic, well-tested systems.</p>
+  <hr class="rule" aria-hidden="true" />
+  <p class="tagline">{copy.tagline}</p>
 </section>
 
 <style>
   .hero {
-    text-align: center;
-    padding-top: var(--space-8);
+    padding-top: calc(var(--space-8) * 1.5);
+    padding-bottom: var(--space-6);
   }
   h1 {
-    font-size: var(--font-size-2xl);
+    margin: 0;
+    font-size: var(--font-size-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .rule {
+    width: 100%;
+    max-width: 220px;
+    height: 1px;
+    margin: var(--space-5) 0;
+    border: none;
+    background: var(--color-accent);
+    transform-origin: left;
+    animation: rule-draw 0.6s ease-out;
   }
   .tagline {
     color: var(--color-text-muted);
     font-size: var(--font-size-lg);
+    max-width: 60ch;
+  }
+  @keyframes rule-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rule {
+      animation: none;
+    }
   }
 </style>

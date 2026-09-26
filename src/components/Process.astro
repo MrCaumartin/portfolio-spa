@@ -1,0 +1,69 @@
+---
+interface Props { lang?: 'en' | 'fr' }
+const { lang = 'en' } = Astro.props;
+const copy = {
+  en: {
+    heading: 'How it works',
+    steps: [
+      { title: 'Discovery call', detail: "A short call to understand what you need and whether it's a fit." },
+      { title: 'Scope', detail: 'A clear proposal: what gets built, timeline, and cost.' },
+      { title: 'Build', detail: 'Regular check-ins as the work progresses, no black boxes.' },
+      { title: 'Handoff', detail: 'Working software, documentation, and a clean handoff to your team.' },
+    ],
+  },
+  fr: {
+    heading: 'Comment ça fonctionne',
+    steps: [
+      { title: 'Appel de découverte', detail: 'Un court appel pour comprendre vos besoins et évaluer si c\'est un bon fit.' },
+      { title: 'Portée du projet', detail: "Une proposition claire : ce qui sera construit, l'échéancier et le coût." },
+      { title: 'Réalisation', detail: 'Des suivis réguliers pendant l\'avancement du travail, sans zones d\'ombre.' },
+      { title: 'Livraison', detail: 'Un logiciel fonctionnel, la documentation, et une transition propre vers votre équipe.' },
+    ],
+  },
+}[lang];
+const { heading, steps } = copy;
+---
+<section class="process">
+  <h2>{heading}</h2>
+  <ol class="steps">
+    {steps.map((step, i) => (
+      <li class="step">
+        <span class="step-index">{String(i + 1).padStart(2, "0")}</span>
+        <div class="step-body">
+          <strong class="step-title">{step.title}</strong>
+          <p class="step-detail">{step.detail}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: var(--space-7) 1fr;
+    gap: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-4) 0;
+  }
+  .step:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .step-index {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent);
+  }
+  .step-title {
+    display: block;
+  }
+  .step-detail {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>

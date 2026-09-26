@@ -1,5 +1,15 @@
+---
+interface Props { lang?: 'en' | 'fr' }
+const { lang = 'en' } = Astro.props;
+const switcher = lang === 'en'
+  ? { href: '/fr/', label: 'Français' }
+  : { href: '/', label: 'English' };
+---
 <footer class="site-footer">
   <p>&copy; {new Date().getFullYear()} Alex Caumartin</p>
+  <p class="lang-switch">
+    <a href={switcher.href} onclick="localStorage.setItem('lang-pref', '1')">{switcher.label}</a>
+  </p>
 </footer>
 
 <style>
@@ -9,5 +19,12 @@
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
     border-top: 1px solid var(--color-border);
+  }
+  .lang-switch {
+    margin-top: var(--space-2);
+  }
+  .lang-switch a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
   }
 </style>
