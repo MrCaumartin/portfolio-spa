@@ -1,0 +1,114 @@
+---
+import { localePaths, t, type Lang } from '../i18n';
+
+interface Props {
+  target: Lang;
+}
+const { target } = Astro.props;
+const { banner } = t(target);
+---
+
+<aside
+  id="lang-banner"
+  class="lang-banner"
+  lang={target}
+  aria-label={banner.label}
+  data-target={target}
+  hidden
+>
+  <p>
+    {banner.text}{' '}
+    <a href={localePaths[target]} hreflang={target}>
+      {banner.link}
+    </a>
+  </p>
+  <button type="button" aria-label={banner.close}>
+    <span aria-hidden="true">×</span>
+  </button>
+</aside>
+
+<script is:inline>
+  (() => {
+    const el = document.getElementById('lang-banner');
+    const target = el.dataset.target;
+    const key = 'lang-banner-dismissed';
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(key) === '1';
+    } catch {
+      /* storage unavailable */
+    }
+    const langs = navigator.languages?.length
+      ? navigator.languages
+      : [navigator.language];
+    if (dismissed || !langs.some((l) => l.toLowerCase().startsWith(target))) {
+      return;
+    }
+    el.hidden = false;
+    el.querySelector('button').addEventListener('click', () => {
+      el.hidden = true;
+      try {
+        localStorage.setItem(key, '1');
+      } catch {
+        /* storage unavailable */
+      }
+    });
+  })();
+</script>
+
+<style>
+  .lang-banner {
+    position: fixed;
+    inset-inline: var(--space-4);
+    inset-block-end: var(--space-4);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    max-width: 480px;
+    margin-inline: auto;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+  }
+  .lang-banner[hidden] {
+    display: none;
+  }
+  .lang-banner p {
+    flex: 1;
+    margin: 0;
+  }
+  .lang-banner a {
+    white-space: nowrap;
+  }
+  .lang-banner button {
+    flex: none;
+    inline-size: 2rem;
+    block-size: 2rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--font-size-lg);
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lang-banner button:hover {
+    border-color: var(--color-accent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lang-banner {
+      animation: banner-in 0.3s ease-out;
+    }
+  }
+  @keyframes banner-in {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-4));
+    }
+  }
+</style>

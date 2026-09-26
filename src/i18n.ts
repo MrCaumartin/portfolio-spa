@@ -31,6 +31,7 @@ export interface Strings {
     send: string;
   };
   a11y: { skipLink: string; langNav: string };
+  banner: { label: string; text: string; link: string; close: string };
   switcher: { href: string; label: string; lang: Lang };
 }
 
@@ -126,6 +127,12 @@ const en: Strings = {
     send: 'Send'
   },
   a11y: { skipLink: 'Skip to main content', langNav: 'Language' },
+  banner: {
+    label: 'Language suggestion',
+    text: 'This site is also available in English.',
+    link: 'View in English →',
+    close: 'Dismiss'
+  },
   switcher: { href: '/fr/', label: 'Français', lang: 'fr' }
 };
 
@@ -223,6 +230,12 @@ const fr: Strings = {
     send: 'Envoyer'
   },
   a11y: { skipLink: 'Passer au contenu principal', langNav: 'Langue' },
+  banner: {
+    label: 'Suggestion de langue',
+    text: 'Ce site est aussi offert en français.',
+    link: 'Voir en français →',
+    close: 'Fermer'
+  },
   switcher: { href: '/', label: 'English', lang: 'en' }
 };
 

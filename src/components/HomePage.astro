@@ -6,6 +6,7 @@ import Services from './Services.astro';
 import Process from './Process.astro';
 import InterestForm from './InterestForm.astro';
 import Header from './Header.astro';
+import LangBanner from './LangBanner.astro';
 import Footer from './Footer.astro';
 import { t, type Lang } from '../i18n';
 
@@ -17,6 +18,7 @@ const { meta } = t(lang);
 ---
 
 <BaseLayout title={meta.title} description={meta.description} lang={lang}>
+  {lang === 'en' && <LangBanner target="fr" />}
   <Header lang={lang} />
   <main id="content" tabindex="-1">
     <Hero lang={lang} />

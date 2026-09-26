@@ -104,14 +104,6 @@ const jsonLd = {
         </script>
       </>
     )}
-    {lang === 'en' && <script is:inline>
-      if (
-        !localStorage.getItem('lang-pref') &&
-        navigator.language.startsWith('fr')
-      ) {
-        window.location.replace('/fr/');
-      }
-    </script>}
   </head>
   <body>
     <a class="skip-link visually-hidden" href="#content">
