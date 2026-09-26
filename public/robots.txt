@@ -1,8 +1,4 @@
-# Allow all crawlers (ponytail: Astro static site is crawlable)
 User-agent: *
 Allow: /
 
-# Sitemap location for search engines
-Sitemap: /sitemap.xml
-
-# No crawling restrictions needed — entire site is public and static
+Sitemap: https://www.alexcaumartin.com/sitemap-index.xml

@@ -1,16 +1,48 @@
 ---
 import '../styles/global.css';
-import type { Lang } from '../i18n';
+import { languages, localePaths, t, type Lang } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
   lang: Lang;
+  noindex?: boolean;
 }
 
-const { title, description, lang } = Astro.props;
+const { title, description, lang, noindex = false } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
+const { meta } = t(lang);
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL('/og-image.png', site).href;
+const alternates = languages.map((l) => ({
+  hreflang: t(l).meta.locale.replace('_', '-'),
+  href: new URL(localePaths[l], site).href
+}));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site.origin}/#person`,
+      name: 'Alex Caumartin',
+      jobTitle: meta.jobTitle,
+      url: new URL(localePaths[lang], site).href,
+      sameAs: [
+        'https://github.com/MrCaumartin',
+        'https://www.linkedin.com/in/alex-caumartin-77616b127/'
+      ]
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.origin}/#website`,
+      name: 'Alex Caumartin',
+      url: new URL('/', site).href,
+      inLanguage: ['en-CA', 'fr-CA'],
+      publisher: { '@id': `${site.origin}/#person` }
+    }
+  ]
+};
 ---
 
 <html lang={lang}>
@@ -20,16 +52,35 @@ const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
     <meta name="theme-color" content={`var(--theme-color)`} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={`${baseUrl}/`} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {!noindex &&
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+      ))}
+    {!noindex && (
+      <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+    )}
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${baseUrl}/`} />
+    <meta property="og:site_name" content="Alex Caumartin" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content={meta.locale} />
+    {languages
+      .filter((l) => l !== lang)
+      .map((l) => (
+        <meta property="og:locale:alternate" content={t(l).meta.locale} />
+      ))}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={meta.imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={meta.imageAlt} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" hreflang="en" href="/" />
-    <link rel="alternate" hreflang="fr" href="/fr/" />
-    <link rel="alternate" hreflang="x-default" href="/" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

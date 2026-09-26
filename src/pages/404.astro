@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { localePaths, t } from '../i18n';
+
+const en = t('en').notFound;
+const fr = t('fr').notFound;
+---
+
+<BaseLayout
+  title={en.title}
+  description={t('en').meta.description}
+  lang="en"
+  noindex
+>
+  <main class="not-found">
+    <section>
+      <h1>{en.heading}</h1>
+      <p>{en.body}</p>
+      <p>
+        <a href={localePaths.en}>{en.back}</a>
+      </p>
+    </section>
+    <section lang="fr">
+      <h2>{fr.heading}</h2>
+      <p>{fr.body}</p>
+      <p>
+        <a href={localePaths.fr}>{fr.back}</a>
+      </p>
+    </section>
+  </main>
+</BaseLayout>

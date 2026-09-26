@@ -1,13 +1,22 @@
 export const languages = ['en', 'fr'] as const;
 export type Lang = (typeof languages)[number];
 
+export const localePaths: Record<Lang, string> = { en: '/', fr: '/fr/' };
+
 interface Item {
   title: string;
   detail: string;
 }
 
 export interface Strings {
-  meta: { title: string; description: string };
+  meta: {
+    title: string;
+    description: string;
+    jobTitle: string;
+    locale: string;
+    imageAlt: string;
+  };
+  notFound: { title: string; heading: string; body: string; back: string };
   hero: { tagline: string };
   about: { heading: string; p1: string; p2: string };
   services: { heading: string; items: Item[] };
@@ -25,9 +34,18 @@ export interface Strings {
 
 const en: Strings = {
   meta: {
-    title: 'Alex Caumartin — Portfolio',
+    title: 'Alex Caumartin — Full Stack Developer',
     description:
-      'Full stack developer specializing in distributed systems, accelerated by AI tooling.'
+      'Full stack developer specializing in distributed systems, accelerated by AI tooling.',
+    jobTitle: 'Full Stack Developer',
+    locale: 'en_CA',
+    imageAlt: 'Alex Caumartin — Full stack developer'
+  },
+  notFound: {
+    title: 'Page not found — Alex Caumartin',
+    heading: 'Page not found',
+    body: "The page you're looking for doesn't exist or has moved.",
+    back: 'Back to home'
   },
   hero: {
     tagline:
@@ -109,9 +127,18 @@ const en: Strings = {
 
 const fr: Strings = {
   meta: {
-    title: 'Alex Caumartin — Portfolio',
+    title: 'Alex Caumartin — Développeur full-stack',
     description:
-      "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA."
+      "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA.",
+    jobTitle: 'Développeur full-stack',
+    locale: 'fr_CA',
+    imageAlt: 'Alex Caumartin — Développeur full-stack'
+  },
+  notFound: {
+    title: 'Page introuvable — Alex Caumartin',
+    heading: 'Page introuvable',
+    body: "La page que vous cherchez n'existe pas ou a été déplacée.",
+    back: "Retour à l'accueil"
   },
   hero: {
     tagline:
