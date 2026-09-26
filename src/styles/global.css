@@ -29,6 +29,10 @@
     line-height: var(--line-height-base);
   }
 
+  body:has(#lang-banner:not([hidden])) {
+    padding-block-end: calc(var(--lang-banner-size, 0px) + 2 * var(--space-4));
+  }
+
   h1,
   h2,
   h3 {
