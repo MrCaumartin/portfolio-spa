@@ -149,7 +149,7 @@ const fr: Strings = {
   about: {
     heading: 'À propos',
     p1: "J'ai passé les dix dernières années à bâtir des systèmes en production — de jeunes startups jusqu'à la mise à l'échelle. J'ai cofondé RubberDuck, un CMS SaaS multi-locataire qui a grandi jusqu'à plus de 800 clients et une équipe d'ingénierie de 25 personnes.",
-    p2: "Aujourd'hui, je suis développeur full-stack chez Soumission Rénovation, une plateforme qui met en relation les propriétaires avec des entrepreneurs vérifiés et licenciés pour leurs projets de rénovation. Je travaille sur l'ensemble de la pile technologique — de l'architecture de systèmes distribués à la livraison de fonctionnalités au quotidien — et j'utilise des outils d'IA pour aller plus vite sans sacrifier la qualité."
+    p2: "Aujourd'hui, je suis développeur full-stack chez Soumission Rénovation, une plateforme qui met en relation les propriétaires avec des entrepreneurs vérifiés et détenteurs d'une licence de la RBQ pour leurs projets de rénovation. Je travaille sur l'ensemble de la pile technologique — de l'architecture de systèmes distribués à la livraison de fonctionnalités au quotidien — et j'utilise des outils d'IA pour aller plus vite sans sacrifier la qualité."
   },
   services: {
     heading: 'Services',
@@ -160,12 +160,12 @@ const fr: Strings = {
           'Concevoir et développer des systèmes backend et des API fiables et bien testés.'
       },
       {
-        title: 'Implémentation IA',
+        title: "Intégration de l'IA",
         detail:
           'Intégrer des LLM et des fonctionnalités IA dans de vrais produits, du prototype à la production.'
       },
       {
-        title: 'Consultation technique',
+        title: 'Services-conseils techniques',
         detail:
           "Conseiller sur l'architecture, la mise à l'échelle et les décisions techniques avant de vous engager."
       },
@@ -192,7 +192,7 @@ const fr: Strings = {
       {
         title: 'Appel de découverte',
         detail:
-          "Un court appel pour comprendre vos besoins et évaluer si c'est un bon fit."
+          'Un court appel pour comprendre vos besoins et voir si nous sommes faits pour travailler ensemble.'
       },
       {
         title: 'Portée du projet',
@@ -212,7 +212,7 @@ const fr: Strings = {
     ]
   },
   form: {
-    heading: 'Entrer en contact',
+    heading: 'Me joindre',
     comingSoon: 'Bientôt disponible — backend en cours de développement.',
     legend: 'Vos coordonnées',
     name: 'Nom',
