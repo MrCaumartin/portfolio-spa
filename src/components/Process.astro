@@ -1,59 +1,10 @@
 ---
+import { t, type Lang } from '../i18n';
+
 interface Props {
-  lang?: 'en' | 'fr';
+  lang: Lang;
 }
-const { lang = 'en' } = Astro.props;
-const copy = {
-  en: {
-    heading: 'How it works',
-    steps: [
-      {
-        title: 'Discovery call',
-        detail:
-          "A short call to understand what you need and whether it's a fit."
-      },
-      {
-        title: 'Scope',
-        detail: 'A clear proposal: what gets built, timeline, and cost.'
-      },
-      {
-        title: 'Build',
-        detail: 'Regular check-ins as the work progresses, no black boxes.'
-      },
-      {
-        title: 'Handoff',
-        detail:
-          'Working software, documentation, and a clean handoff to your team.'
-      }
-    ]
-  },
-  fr: {
-    heading: 'Comment ça fonctionne',
-    steps: [
-      {
-        title: 'Appel de découverte',
-        detail:
-          "Un court appel pour comprendre vos besoins et évaluer si c'est un bon fit."
-      },
-      {
-        title: 'Portée du projet',
-        detail:
-          "Une proposition claire : ce qui sera construit, l'échéancier et le coût."
-      },
-      {
-        title: 'Réalisation',
-        detail:
-          "Des suivis réguliers pendant l'avancement du travail, sans zones d'ombre."
-      },
-      {
-        title: 'Livraison',
-        detail:
-          'Un logiciel fonctionnel, la documentation, et une transition propre vers votre équipe.'
-      }
-    ]
-  }
-}[lang];
-const { heading, steps } = copy;
+const { heading, steps } = t(Astro.props.lang).process;
 ---
 
 <section class="process">

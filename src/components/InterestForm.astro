@@ -1,26 +1,10 @@
 ---
+import { t, type Lang } from '../i18n';
+
 interface Props {
-  lang?: 'en' | 'fr';
+  lang: Lang;
 }
-const { lang = 'en' } = Astro.props;
-const copy = {
-  en: {
-    heading: 'Get in touch',
-    comingSoon: 'Coming soon — backend in progress.',
-    name: 'Name',
-    email: 'Email',
-    message: 'Message',
-    send: 'Send'
-  },
-  fr: {
-    heading: 'Entrer en contact',
-    comingSoon: 'Bientôt disponible — backend en cours de développement.',
-    name: 'Nom',
-    email: 'Courriel',
-    message: 'Message',
-    send: 'Envoyer'
-  }
-}[lang];
+const { form: copy } = t(Astro.props.lang);
 ---
 
 <div class="skip-link-container">

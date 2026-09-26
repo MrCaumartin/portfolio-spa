@@ -1,18 +1,10 @@
 ---
+import { t, type Lang } from '../i18n';
+
 interface Props {
-  lang?: 'en' | 'fr';
+  lang: Lang;
 }
-const { lang = 'en' } = Astro.props;
-const copy = {
-  en: {
-    tagline:
-      'Full stack developer specializing in distributed systems, accelerated by AI tooling.'
-  },
-  fr: {
-    tagline:
-      "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA."
-  }
-}[lang];
+const { hero: copy } = t(Astro.props.lang);
 ---
 
 <section class="hero">

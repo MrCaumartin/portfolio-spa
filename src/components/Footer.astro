@@ -1,12 +1,10 @@
 ---
+import { t, type Lang } from '../i18n';
+
 interface Props {
-  lang?: 'en' | 'fr';
+  lang: Lang;
 }
-const { lang = 'en' } = Astro.props;
-const switcher =
-  lang === 'en'
-    ? { href: '/fr/', label: 'Français' }
-    : { href: '/', label: 'English' };
+const { switcher } = t(Astro.props.lang);
 ---
 
 <footer class="site-footer">

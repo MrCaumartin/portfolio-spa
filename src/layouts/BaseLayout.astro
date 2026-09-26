@@ -1,18 +1,14 @@
 ---
 import '../styles/global.css';
+import type { Lang } from '../i18n';
 
 interface Props {
   title: string;
-  description?: string;
-  lang?: 'en' | 'fr';
+  description: string;
+  lang: Lang;
 }
 
-const descriptions = {
-  en: 'Full stack developer specializing in distributed systems, accelerated by AI tooling.',
-  fr: "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA."
-};
-
-const { title, lang = 'en', description = descriptions[lang] } = Astro.props;
+const { title, description, lang } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
 ---
