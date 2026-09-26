@@ -28,7 +28,7 @@ const jsonLd = {
       '@id': `${site.origin}/#person`,
       name: 'Alex Caumartin',
       jobTitle: meta.jobTitle,
-      url: new URL(localePaths[lang], site).href,
+      url: new URL('/', site).href,
       sameAs: [
         'https://github.com/MrCaumartin',
         'https://www.linkedin.com/in/alex-caumartin-77616b127/'
