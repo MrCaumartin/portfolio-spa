@@ -34,11 +34,11 @@ const { heading, steps } = t(Astro.props.lang).process;
     display: grid;
     grid-template-columns: var(--space-7) 1fr;
     gap: var(--space-4);
-    border-top: 1px solid var(--color-border);
-    padding: var(--space-4) 0;
+    border-block-start: 1px solid var(--color-border);
+    padding-block: var(--space-4);
   }
   .step:last-child {
-    border-bottom: 1px solid var(--color-border);
+    border-block-end: 1px solid var(--color-border);
   }
   .step-index {
     font-variant-numeric: tabular-nums;
@@ -49,7 +49,7 @@ const { heading, steps } = t(Astro.props.lang).process;
     font-size: var(--font-size-base);
   }
   .step-detail {
-    margin: var(--space-2) 0 0;
+    margin-block: var(--space-2) 0;
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
   }

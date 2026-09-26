@@ -28,7 +28,7 @@ const { heading, items: services } = t(Astro.props.lang).services;
     margin: 0;
   }
   .service-cell {
-    border-top: 1px solid var(--color-border);
+    border-block-start: 1px solid var(--color-border);
     padding: var(--space-3) var(--space-4) var(--space-4) 0;
   }
   .service-title {
@@ -37,7 +37,7 @@ const { heading, items: services } = t(Astro.props.lang).services;
     font-size: var(--font-size-base);
   }
   .service-detail {
-    margin: var(--space-2) 0 0;
+    margin-block: var(--space-2) 0;
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
   }

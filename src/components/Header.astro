@@ -5,6 +5,9 @@ interface Props {
   lang: Lang;
 }
 const { a11y, switcher } = t(Astro.props.lang);
+const speculationRules = {
+  prefetch: [{ urls: [switcher.href], eagerness: 'moderate' }]
+};
 ---
 
 <header class="site-header">
@@ -15,12 +18,17 @@ const { a11y, switcher } = t(Astro.props.lang);
   </nav>
 </header>
 
+<script
+  is:inline
+  type="speculationrules"
+  set:html={JSON.stringify(speculationRules)}
+/>
 <style>
   .site-header {
     display: flex;
     justify-content: flex-end;
-    max-width: 800px;
-    margin: 0 auto;
+    max-inline-size: 800px;
+    margin-inline: auto;
     padding: var(--space-4) var(--space-5) 0;
     font-size: var(--font-size-sm);
   }

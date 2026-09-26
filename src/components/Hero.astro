@@ -15,8 +15,7 @@ const { hero: copy } = t(Astro.props.lang);
 
 <style>
   .hero {
-    padding-top: calc(var(--space-8) * 1.5);
-    padding-bottom: var(--space-6);
+    padding-block: calc(var(--space-8) * 1.5) var(--space-6);
   }
   h1 {
     margin: 0;
@@ -26,10 +25,11 @@ const { hero: copy } = t(Astro.props.lang);
     line-height: 1;
   }
   .rule {
-    width: 100%;
-    max-width: 220px;
-    height: 1px;
-    margin: var(--space-5) 0;
+    inline-size: 100%;
+    max-inline-size: 220px;
+    block-size: 1px;
+    margin-block: var(--space-5);
+    margin-inline: 0;
     border: none;
     background: var(--color-accent);
     transform-origin: left;
@@ -38,7 +38,7 @@ const { hero: copy } = t(Astro.props.lang);
   .tagline {
     color: var(--color-text-muted);
     font-size: var(--font-size-lg);
-    max-width: 60ch;
+    max-inline-size: 60ch;
   }
   @keyframes rule-draw {
     from {
