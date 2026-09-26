@@ -1,11 +1,13 @@
 ---
-import { langBanner, localePaths, type Lang } from '../i18n';
+import { langBanner, t, type Lang } from '../i18n';
 
 interface Props {
   target: Lang;
 }
 const { target } = Astro.props;
 const banner = langBanner[target];
+// Same name as the header switcher on the other-language page.
+const { switcher } = t(target === 'en' ? 'fr' : 'en');
 ---
 
 <aside
@@ -18,9 +20,10 @@ const banner = langBanner[target];
 >
   <p>
     {banner.text}{' '}
-    <a href={localePaths[target]} hreflang={target}>
-      {banner.link}
-    </a>
+    <a href={switcher.href} hreflang={target}>
+      {switcher.label}
+    </a>{' '}
+    <span aria-hidden="true">→</span>
   </p>
   <button type="button" aria-label={banner.close}>
     <span aria-hidden="true">×</span>
@@ -45,7 +48,9 @@ const banner = langBanner[target];
     if (dismissed || prefersFr !== (target === 'fr')) return;
     el.hidden = false;
     el.querySelector('button').addEventListener('click', () => {
+      const hadFocus = el.contains(document.activeElement);
       el.hidden = true;
+      if (hadFocus) document.getElementById('content')?.focus();
       try {
         localStorage.setItem(key, '1');
       } catch {
@@ -84,8 +89,8 @@ const banner = langBanner[target];
   }
   .lang-banner button {
     flex: none;
-    inline-size: 2rem;
-    block-size: 2rem;
+    min-inline-size: 2rem;
+    min-block-size: 2rem;
     padding: 0;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);

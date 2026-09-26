@@ -231,7 +231,6 @@ export const t = (lang: Lang): Strings => strings[lang];
 interface BannerStrings {
   label: string;
   text: string;
-  link: string;
   close: string;
 }
 
@@ -239,14 +238,12 @@ interface BannerStrings {
 export const langBanner: Record<Lang, BannerStrings> = {
   en: {
     label: 'Language suggestion',
-    text: 'This site is also available in English.',
-    link: 'View in English →',
+    text: 'Also available in',
     close: 'Dismiss'
   },
   fr: {
     label: 'Suggestion de langue',
-    text: 'Ce site est aussi offert en français.',
-    link: 'Voir en français →',
+    text: 'Également offert en',
     close: 'Fermer'
   }
 };
