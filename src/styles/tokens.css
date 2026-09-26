@@ -10,7 +10,7 @@
   /* Performance */
   --font-display: swap;
   --color-surface: #191c26;
-  --color-text: #EDEAE2;
+  --color-text: #edeae2;
   --color-text-muted: #8b90a0;
   --color-accent: #35c9b8;
   --color-border: #2a2e3a;
@@ -26,7 +26,8 @@
   --space-8: 64px;
 
   /* Typography */
-  --font-sans: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;

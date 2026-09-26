@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -9,17 +9,14 @@ interface Props {
 
 const descriptions = {
   en: 'Full stack developer specializing in distributed systems, accelerated by AI tooling.',
-  fr: "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA.",
+  fr: "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA."
 };
 
-const {
-  title,
-  lang = 'en',
-  description = descriptions[lang],
-} = Astro.props;
+const { title, lang = 'en', description = descriptions[lang] } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
 ---
+
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
@@ -45,23 +42,29 @@ const baseUrl = import.meta.env.PUBLIC_URL || 'https://www.alexcaumartin.com';
     />
     {gaId && (
       <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        ></script>
         <script is:inline define:vars={{ gaId }}>
           window.dataLayer = window.dataLayer || [];
           /* eslint-disable prefer-rest-params -- gtag needs arguments */
-          function gtag(){dataLayer.push(arguments);}
+          function gtag() {
+            dataLayer.push(arguments);
+          }
           gtag('js', new Date());
           gtag('config', gaId);
         </script>
       </>
     )}
-    {lang === 'en' && (
-      <script is:inline>
-        if (!localStorage.getItem('lang-pref') && navigator.language.startsWith('fr')) {
-          window.location.replace('/fr/');
-        }
-      </script>
-    )}
+    {lang === 'en' && <script is:inline>
+      if (
+        !localStorage.getItem('lang-pref') &&
+        navigator.language.startsWith('fr')
+      ) {
+        window.location.replace('/fr/');
+      }
+    </script>}
   </head>
   <body>
     <slot />

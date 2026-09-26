@@ -1,19 +1,22 @@
 ---
-interface Props { lang?: 'en' | 'fr' }
+interface Props {
+  lang?: 'en' | 'fr';
+}
 const { lang = 'en' } = Astro.props;
 const copy = {
   en: {
     heading: 'About',
     p1: "I've spent the last 10+ years building production systems — from early-stage startups through to scale. I co-founded RubberDuck, a multi-tenant SaaS CMS that grew to over 800 clients and a 25-person engineering team.",
-    p2: "Today I'm a Full Stack Developer at Soumission Rénovation, a platform that connects homeowners with verified, licensed contractors for renovation projects. I work across the stack — from distributed-systems architecture to day-to-day feature delivery — and use AI tools to work faster without cutting corners.",
+    p2: "Today I'm a Full Stack Developer at Soumission Rénovation, a platform that connects homeowners with verified, licensed contractors for renovation projects. I work across the stack — from distributed-systems architecture to day-to-day feature delivery — and use AI tools to work faster without cutting corners."
   },
   fr: {
     heading: 'À propos',
     p1: "J'ai passé les dix dernières années à bâtir des systèmes en production — de jeunes startups jusqu'à la mise à l'échelle. J'ai cofondé RubberDuck, un CMS SaaS multi-locataire qui a grandi jusqu'à plus de 800 clients et une équipe d'ingénierie de 25 personnes.",
-    p2: "Aujourd'hui, je suis développeur full-stack chez Soumission Rénovation, une plateforme qui met en relation les propriétaires avec des entrepreneurs vérifiés et licenciés pour leurs projets de rénovation. Je travaille sur l'ensemble de la pile technologique — de l'architecture de systèmes distribués à la livraison de fonctionnalités au quotidien — et j'utilise des outils d'IA pour aller plus vite sans sacrifier la qualité.",
-  },
+    p2: "Aujourd'hui, je suis développeur full-stack chez Soumission Rénovation, une plateforme qui met en relation les propriétaires avec des entrepreneurs vérifiés et licenciés pour leurs projets de rénovation. Je travaille sur l'ensemble de la pile technologique — de l'architecture de systèmes distribués à la livraison de fonctionnalités au quotidien — et j'utilise des outils d'IA pour aller plus vite sans sacrifier la qualité."
+  }
 }[lang];
 ---
+
 <section class="about">
   <h2>{copy.heading}</h2>
   <p>{copy.p1}</p>

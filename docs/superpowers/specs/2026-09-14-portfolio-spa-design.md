@@ -42,6 +42,7 @@ public/
 ## Design tokens (`tokens.css`)
 
 A single `:root` block, commented, covering:
+
 - Color: `--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-border`
 - Spacing scale: `--space-1` … `--space-8` (e.g. 4px base, doubling/1.5x steps)
 - Typography: `--font-sans`, `--font-size-sm/base/lg/xl/2xl`, `--line-height-base`

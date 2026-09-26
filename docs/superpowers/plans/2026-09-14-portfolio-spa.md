@@ -24,6 +24,7 @@
 ### Task 1: Scaffold the Astro project
 
 **Files:**
+
 - Create: `portfolio-spa/package.json`
 - Create: `portfolio-spa/astro.config.mjs`
 - Create: `portfolio-spa/tsconfig.json`
@@ -32,6 +33,7 @@
 - Create: `portfolio-spa/.gitignore`
 
 **Interfaces:**
+
 - Produces: a working `npm run build` producing `dist/index.html`, and `npm run dev` for local preview. Later tasks assume `npm install` has been run in `portfolio-spa/`.
 
 - [ ] **Step 1: Create `package.json`**
@@ -59,7 +61,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  output: 'static',
+  output: 'static'
 });
 ```
 
@@ -90,6 +92,7 @@ interface ImportMeta {
 ```astro
 ---
 ---
+
 <html>
   <body>
     <h1>Scaffold OK</h1>
@@ -125,10 +128,12 @@ git commit -m "chore: scaffold astro project"
 ### Task 2: Design tokens and global styles
 
 **Files:**
+
 - Create: `portfolio-spa/src/styles/tokens.css`
 - Create: `portfolio-spa/src/styles/global.css`
 
 **Interfaces:**
+
 - Produces: CSS custom properties consumed by every component created in Tasks 4-6 (`--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-border`, `--space-1`..`--space-8`, `--font-sans`, `--font-size-sm/base/lg/xl/2xl`, `--line-height-base`, `--radius-sm/md`, `--shadow-sm`).
 
 - [ ] **Step 1: Create `src/styles/tokens.css`**
@@ -158,7 +163,7 @@ git commit -m "chore: scaffold astro project"
   --space-8: 64px;
 
   /* Typography */
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
@@ -176,9 +181,11 @@ git commit -m "chore: scaffold astro project"
 - [ ] **Step 2: Create `src/styles/global.css`**
 
 ```css
-@import "./tokens.css";
+@import './tokens.css';
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -191,7 +198,9 @@ body {
   line-height: var(--line-height-base);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   line-height: 1.2;
   margin: 0 0 var(--space-4);
 }
@@ -224,9 +233,11 @@ git commit -m "feat: add design tokens and global styles"
 ### Task 3: BaseLayout with conditional GA4 snippet
 
 **Files:**
+
 - Create: `portfolio-spa/src/layouts/BaseLayout.astro`
 
 **Interfaces:**
+
 - Consumes: `src/styles/global.css` (Task 2).
 - Produces: `BaseLayout.astro` accepting a `title: string` prop and a default slot, used by `index.astro` in Task 6. Renders `<html><head>...</head><body><slot /></body></html>`.
 
@@ -234,7 +245,7 @@ git commit -m "feat: add design tokens and global styles"
 
 ```astro
 ---
-import "../styles/global.css";
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -243,6 +254,7 @@ interface Props {
 const { title } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -250,10 +262,15 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <title>{title}</title>
     {gaId && (
       <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        ></script>
         <script is:inline define:vars={{ gaId }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+          function gtag() {
+            dataLayer.push(arguments);
+          }
           gtag('js', new Date());
           gtag('config', gaId);
         </script>
@@ -272,9 +289,12 @@ Temporarily replace `src/pages/index.astro` content with:
 
 ```astro
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Test"><p>hi</p></BaseLayout>
+
+<BaseLayout title="Test">
+  <p>hi</p>
+</BaseLayout>
 ```
 
 Run: `cd portfolio-spa && PUBLIC_GA_MEASUREMENT_ID=G-TEST123 npm run build`
@@ -303,11 +323,13 @@ git commit -m "feat: add base layout with conditional GA4 snippet"
 ### Task 4: Hero, Skills, Experience content components
 
 **Files:**
+
 - Create: `portfolio-spa/src/components/Hero.astro`
 - Create: `portfolio-spa/src/components/Skills.astro`
 - Create: `portfolio-spa/src/components/Experience.astro`
 
 **Interfaces:**
+
 - Consumes: CSS tokens from Task 2 (via global styles already loaded by `BaseLayout`).
 - Produces: three zero-prop components rendering static placeholder content, consumed by `index.astro` in Task 6.
 
@@ -317,7 +339,9 @@ git commit -m "feat: add base layout with conditional GA4 snippet"
 <section class="hero">
   <h1>Alex Caumartin</h1>
   <!-- TODO: replace placeholder copy -->
-  <p class="tagline">Software engineer building pragmatic, well-tested systems.</p>
+  <p class="tagline">
+    Software engineer building pragmatic, well-tested systems.
+  </p>
 </section>
 
 <style>
@@ -341,13 +365,21 @@ git commit -m "feat: add base layout with conditional GA4 snippet"
 ---
 /* TODO: replace placeholder copy */
 const skills = [
-  "TypeScript", "Node.js", "React", "PostgreSQL", "Docker", "CI/CD",
+  'TypeScript',
+  'Node.js',
+  'React',
+  'PostgreSQL',
+  'Docker',
+  'CI/CD'
 ];
 ---
+
 <section class="skills">
   <h2>Skills</h2>
   <ul class="skills-list">
-    {skills.map((skill) => <li class="skill-tag">{skill}</li>)}
+    {skills.map((skill) => (
+      <li class="skill-tag">{skill}</li>
+    ))}
   </ul>
 </section>
 
@@ -375,10 +407,17 @@ const skills = [
 ---
 /* TODO: replace placeholder copy */
 const highlights = [
-  { role: "Senior Engineer", detail: "Led migration of a monolith to modular services." },
-  { role: "Engineer", detail: "Built internal tooling used across three teams." },
+  {
+    role: 'Senior Engineer',
+    detail: 'Led migration of a monolith to modular services.'
+  },
+  {
+    role: 'Engineer',
+    detail: 'Built internal tooling used across three teams.'
+  }
 ];
 ---
+
 <section class="experience">
   <h2>Experience</h2>
   <ul class="highlights">
@@ -419,11 +458,12 @@ Temporarily set `src/pages/index.astro` to:
 
 ```astro
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import Skills from "../components/Skills.astro";
-import Experience from "../components/Experience.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
 ---
+
 <BaseLayout title="Test">
   <Hero />
   <Skills />
@@ -449,10 +489,12 @@ git commit -m "feat: add hero, skills, and experience sections"
 ### Task 5: Interest form (disabled) and Footer
 
 **Files:**
+
 - Create: `portfolio-spa/src/components/InterestForm.astro`
 - Create: `portfolio-spa/src/components/Footer.astro`
 
 **Interfaces:**
+
 - Produces: `InterestForm.astro` and `Footer.astro`, zero-prop components consumed by `index.astro` in Task 6. `InterestForm` field `name` attributes (`name`, `email`, `message`) are the contract the future `platform` gateway integration will read.
 
 - [ ] **Step 1: Create `src/components/InterestForm.astro`**
@@ -471,7 +513,9 @@ git commit -m "feat: add hero, skills, and experience sections"
     <label for="message">Message</label>
     <textarea id="message" name="message" required disabled></textarea>
 
-    <button type="submit" disabled>Send</button>
+    <button type="submit" disabled>
+      Send
+    </button>
   </form>
 </section>
 
@@ -551,22 +595,25 @@ git commit -m "feat: add disabled interest form and footer"
 ### Task 6: Assemble final page
 
 **Files:**
+
 - Modify: `portfolio-spa/src/pages/index.astro`
 
 **Interfaces:**
+
 - Consumes: `BaseLayout` (Task 3), `Hero`/`Skills`/`Experience` (Task 4), `InterestForm`/`Footer` (Task 5).
 
 - [ ] **Step 1: Replace `src/pages/index.astro` with the final composition**
 
 ```astro
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import Skills from "../components/Skills.astro";
-import Experience from "../components/Experience.astro";
-import InterestForm from "../components/InterestForm.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import InterestForm from '../components/InterestForm.astro';
+import Footer from '../components/Footer.astro';
 ---
+
 <BaseLayout title="Alex Caumartin — Portfolio">
   <Hero />
   <Skills />
@@ -593,10 +640,12 @@ git commit -m "feat: assemble final portfolio page"
 ### Task 7: Env example and Railway deployment docs
 
 **Files:**
+
 - Create: `portfolio-spa/.env.example`
 - Create: `portfolio-spa/README.md`
 
 **Interfaces:**
+
 - Produces: documented deployment steps; no code interfaces (final task).
 
 - [ ] **Step 1: Create `.env.example`**

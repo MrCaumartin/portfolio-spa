@@ -1,32 +1,83 @@
 ---
-interface Props { lang?: 'en' | 'fr' }
+interface Props {
+  lang?: 'en' | 'fr';
+}
 const { lang = 'en' } = Astro.props;
 const copy = {
   en: {
     heading: 'Services',
     services: [
-      { title: 'Backend Development', detail: 'Design and build reliable, well-tested backend systems and APIs.' },
-      { title: 'AI Implementation', detail: 'Integrate LLMs and AI features into real products, from prototype to production.' },
-      { title: 'Technical Consulting', detail: 'Advise on architecture, scaling, and technical decisions before you commit.' },
-      { title: 'Database Optimization', detail: 'Diagnose slow queries and tune schemas for performance at scale.' },
-      { title: 'API Development', detail: 'Build clean, documented APIs that are easy to integrate and maintain.' },
-      { title: 'MCP Integration', detail: 'Connect tools and data sources to AI agents using the Model Context Protocol.' },
-    ],
+      {
+        title: 'Backend Development',
+        detail:
+          'Design and build reliable, well-tested backend systems and APIs.'
+      },
+      {
+        title: 'AI Implementation',
+        detail:
+          'Integrate LLMs and AI features into real products, from prototype to production.'
+      },
+      {
+        title: 'Technical Consulting',
+        detail:
+          'Advise on architecture, scaling, and technical decisions before you commit.'
+      },
+      {
+        title: 'Database Optimization',
+        detail:
+          'Diagnose slow queries and tune schemas for performance at scale.'
+      },
+      {
+        title: 'API Development',
+        detail:
+          'Build clean, documented APIs that are easy to integrate and maintain.'
+      },
+      {
+        title: 'MCP Integration',
+        detail:
+          'Connect tools and data sources to AI agents using the Model Context Protocol.'
+      }
+    ]
   },
   fr: {
     heading: 'Services',
     services: [
-      { title: 'Développement backend', detail: 'Concevoir et développer des systèmes backend et des API fiables et bien testés.' },
-      { title: 'Implémentation IA', detail: 'Intégrer des LLM et des fonctionnalités IA dans de vrais produits, du prototype à la production.' },
-      { title: 'Consultation technique', detail: 'Conseiller sur l\'architecture, la mise à l\'échelle et les décisions techniques avant de vous engager.' },
-      { title: 'Optimisation de base de données', detail: 'Diagnostiquer les requêtes lentes et ajuster les schémas pour la performance à grande échelle.' },
-      { title: "Développement d'API", detail: 'Développer des API propres et documentées, faciles à intégrer et à maintenir.' },
-      { title: 'Intégration MCP', detail: 'Connecter des outils et des sources de données à des agents IA à l\'aide du Model Context Protocol.' },
-    ],
-  },
+      {
+        title: 'Développement backend',
+        detail:
+          'Concevoir et développer des systèmes backend et des API fiables et bien testés.'
+      },
+      {
+        title: 'Implémentation IA',
+        detail:
+          'Intégrer des LLM et des fonctionnalités IA dans de vrais produits, du prototype à la production.'
+      },
+      {
+        title: 'Consultation technique',
+        detail:
+          "Conseiller sur l'architecture, la mise à l'échelle et les décisions techniques avant de vous engager."
+      },
+      {
+        title: 'Optimisation de base de données',
+        detail:
+          'Diagnostiquer les requêtes lentes et ajuster les schémas pour la performance à grande échelle.'
+      },
+      {
+        title: "Développement d'API",
+        detail:
+          'Développer des API propres et documentées, faciles à intégrer et à maintenir.'
+      },
+      {
+        title: 'Intégration MCP',
+        detail:
+          "Connecter des outils et des sources de données à des agents IA à l'aide du Model Context Protocol."
+      }
+    ]
+  }
 }[lang];
 const { heading, services } = copy;
 ---
+
 <section class="services">
   <h2>{heading}</h2>
   <ul class="services-grid">

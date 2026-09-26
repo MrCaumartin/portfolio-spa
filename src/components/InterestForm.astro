@@ -1,5 +1,7 @@
 ---
-interface Props { lang?: 'en' | 'fr' }
+interface Props {
+  lang?: 'en' | 'fr';
+}
 const { lang = 'en' } = Astro.props;
 const copy = {
   en: {
@@ -8,7 +10,7 @@ const copy = {
     name: 'Name',
     email: 'Email',
     message: 'Message',
-    send: 'Send',
+    send: 'Send'
   },
   fr: {
     heading: 'Entrer en contact',
@@ -16,12 +18,15 @@ const copy = {
     name: 'Nom',
     email: 'Courriel',
     message: 'Message',
-    send: 'Envoyer',
-  },
+    send: 'Envoyer'
+  }
 }[lang];
 ---
+
 <div class="skip-link-container">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#main-content" class="skip-link">
+    Skip to main content
+  </a>
 </div>
 
 <section class="interest">
@@ -29,7 +34,9 @@ const copy = {
   <div class="panel">
     <p class="coming-soon">{copy.comingSoon}</p>
     <form class="interest-form" novalidate>
-      <label id="name-label" for="name-input">{copy.name}</label>
+      <label id="name-label" for="name-input">
+        {copy.name}
+      </label>
       <input
         id="name-input"
         name="name"
@@ -41,7 +48,9 @@ const copy = {
         autocomplete="name"
       />
 
-      <label id="email-label" for="email-input">{copy.email}</label>
+      <label id="email-label" for="email-input">
+        {copy.email}
+      </label>
       <input
         id="email-input"
         name="email"
@@ -53,7 +62,9 @@ const copy = {
         autocomplete="email"
       />
 
-      <label id="message-label" for="message-input">{copy.message}</label>
+      <label id="message-label" for="message-input">
+        {copy.message}
+      </label>
       <textarea
         id="message-input"
         name="message"
