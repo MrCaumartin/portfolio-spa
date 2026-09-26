@@ -9,10 +9,10 @@ const { heading, items: services } = t(Astro.props.lang).services;
 
 <section class="services">
   <h2>{heading}</h2>
-  <ul class="services-grid">
+  <ul class="services-grid" role="list">
     {services.map((service) => (
       <li class="service-cell">
-        <strong class="service-title">{service.title}</strong>
+        <h3 class="service-title">{service.title}</h3>
         <p class="service-detail">{service.detail}</p>
       </li>
     ))}
@@ -32,7 +32,7 @@ const { heading, items: services } = t(Astro.props.lang).services;
     padding: var(--space-3) var(--space-4) var(--space-4) 0;
   }
   .service-title {
-    display: block;
+    margin: 0;
     font-weight: 700;
     font-size: var(--font-size-base);
   }

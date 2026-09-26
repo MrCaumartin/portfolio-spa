@@ -29,7 +29,8 @@ export interface Strings {
     message: string;
     send: string;
   };
-  switcher: { href: string; label: string };
+  a11y: { skipLink: string; langNav: string };
+  switcher: { href: string; label: string; lang: Lang };
 }
 
 const en: Strings = {
@@ -122,7 +123,8 @@ const en: Strings = {
     message: 'Message',
     send: 'Send'
   },
-  switcher: { href: '/fr/', label: 'Français' }
+  a11y: { skipLink: 'Skip to main content', langNav: 'Language' },
+  switcher: { href: '/fr/', label: 'Français', lang: 'fr' }
 };
 
 const fr: Strings = {
@@ -217,7 +219,8 @@ const fr: Strings = {
     message: 'Message',
     send: 'Envoyer'
   },
-  switcher: { href: '/', label: 'English' }
+  a11y: { skipLink: 'Passer au contenu principal', langNav: 'Langue' },
+  switcher: { href: '/', label: 'English', lang: 'en' }
 };
 
 export const strings: Record<Lang, Strings> = { en, fr };

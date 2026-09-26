@@ -1,19 +1,5 @@
----
-import { t, type Lang } from '../i18n';
-
-interface Props {
-  lang: Lang;
-}
-const { switcher } = t(Astro.props.lang);
----
-
 <footer class="site-footer">
   <p>&copy; {new Date().getFullYear()} Alex Caumartin</p>
-  <p class="lang-switch">
-    <a href={switcher.href} onclick="localStorage.setItem('lang-pref', '1')">
-      {switcher.label}
-    </a>
-  </p>
 </footer>
 
 <style>
@@ -23,12 +9,5 @@ const { switcher } = t(Astro.props.lang);
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
     border-top: 1px solid var(--color-border);
-  }
-  .lang-switch {
-    margin-top: var(--space-2);
-  }
-  .lang-switch a {
-    color: var(--color-text-muted);
-    text-decoration: underline;
   }
 </style>

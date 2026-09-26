@@ -7,12 +7,6 @@ interface Props {
 const { form: copy } = t(Astro.props.lang);
 ---
 
-<div class="skip-link-container">
-  <a href="#main-content" class="skip-link">
-    Skip to main content
-  </a>
-</div>
-
 <section class="interest">
   <h2>{copy.heading}</h2>
   <div class="panel">
@@ -66,22 +60,3 @@ const { form: copy } = t(Astro.props.lang);
     </form>
   </div>
 </section>
-
-<style>
-  .skip-link-container {
-    position: absolute;
-    left: -9999px;
-  }
-  .skip-link:focus {
-    left: var(--space-4);
-    top: var(--space-4);
-    z-index: 100;
-    padding: var(--space-2) var(--space-4);
-    background: var(--color-accent);
-    color: var(--color-bg);
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    outline-offset: var(--space-1);
-  }
-</style>

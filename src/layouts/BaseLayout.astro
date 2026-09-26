@@ -11,7 +11,7 @@ interface Props {
 
 const { title, description, lang, noindex = false } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const { meta } = t(lang);
+const { meta, a11y } = t(lang);
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site).href;
 const ogImage = new URL('/og-image.png', site).href;
@@ -114,6 +114,9 @@ const jsonLd = {
     </script>}
   </head>
   <body>
+    <a class="skip-link visually-hidden" href="#content">
+      {a11y.skipLink}
+    </a>
     <slot />
   </body>
 </html>

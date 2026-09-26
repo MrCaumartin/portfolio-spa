@@ -9,12 +9,14 @@ const { heading, steps } = t(Astro.props.lang).process;
 
 <section class="process">
   <h2>{heading}</h2>
-  <ol class="steps">
+  <ol class="steps" role="list">
     {steps.map((step, i) => (
       <li class="step">
-        <span class="step-index">{String(i + 1).padStart(2, '0')}</span>
+        <span class="step-index" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
         <div class="step-body">
-          <strong class="step-title">{step.title}</strong>
+          <h3 class="step-title">{step.title}</h3>
           <p class="step-detail">{step.detail}</p>
         </div>
       </li>
@@ -43,7 +45,8 @@ const { heading, steps } = t(Astro.props.lang).process;
     color: var(--color-accent);
   }
   .step-title {
-    display: block;
+    margin: 0;
+    font-size: var(--font-size-base);
   }
   .step-detail {
     margin: var(--space-2) 0 0;
