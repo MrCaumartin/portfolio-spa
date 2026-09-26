@@ -24,6 +24,7 @@ export interface Strings {
   form: {
     heading: string;
     comingSoon: string;
+    legend: string;
     name: string;
     email: string;
     message: string;
@@ -118,6 +119,7 @@ const en: Strings = {
   form: {
     heading: 'Get in touch',
     comingSoon: 'Coming soon — backend in progress.',
+    legend: 'Your details',
     name: 'Name',
     email: 'Email',
     message: 'Message',
@@ -214,6 +216,7 @@ const fr: Strings = {
   form: {
     heading: 'Entrer en contact',
     comingSoon: 'Bientôt disponible — backend en cours de développement.',
+    legend: 'Vos coordonnées',
     name: 'Nom',
     email: 'Courriel',
     message: 'Message',

@@ -14,6 +14,7 @@
   --color-text-muted: #8b90a0;
   --color-accent: #35c9b8;
   --color-border: #2a2e3a;
+  --color-danger: #f07178;
 
   /* Spacing scale (4px base, ~1.5x steps) */
   --space-1: 4px;

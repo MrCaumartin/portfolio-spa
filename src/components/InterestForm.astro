@@ -10,53 +10,94 @@ const { form: copy } = t(Astro.props.lang);
 <section class="interest">
   <h2>{copy.heading}</h2>
   <div class="panel">
-    <p class="coming-soon">{copy.comingSoon}</p>
+    <p id="coming-soon" class="coming-soon">
+      {copy.comingSoon}
+    </p>
     <form class="interest-form" novalidate>
-      <label id="name-label" for="name-input">
-        {copy.name}
-      </label>
-      <input
-        id="name-input"
-        name="name"
-        type="text"
-        required
-        disabled
-        aria-labelledby="name-label"
-        placeholder="Your full name"
-        autocomplete="name"
-      />
+      <fieldset disabled aria-describedby="coming-soon">
+        <legend class="visually-hidden">{copy.legend}</legend>
 
-      <label id="email-label" for="email-input">
-        {copy.email}
-      </label>
-      <input
-        id="email-input"
-        name="email"
-        type="email"
-        required
-        disabled
-        aria-labelledby="email-label"
-        placeholder="your@email.com"
-        autocomplete="email"
-      />
+        <label for="name-input">{copy.name}</label>
+        <input
+          id="name-input"
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+        />
 
-      <label id="message-label" for="message-input">
-        {copy.message}
-      </label>
-      <textarea
-        id="message-input"
-        name="message"
-        required
-        disabled
-        aria-labelledby="message-label"
-        placeholder="Tell us about your project..."
-        rows={3}
-        autocomplete="off"
-      ></textarea>
+        <label for="email-input">{copy.email}</label>
+        <input
+          id="email-input"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+        />
 
-      <button type="submit" disabled aria-busy="false">
-        {copy.send}
-      </button>
+        <label for="message-input">{copy.message}</label>
+        <textarea
+          id="message-input"
+          name="message"
+          required
+          rows={3}
+        ></textarea>
+
+        <button type="submit">{copy.send}</button>
+      </fieldset>
     </form>
   </div>
 </section>
+
+<style>
+  .panel {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+  .coming-soon {
+    margin: 0 0 var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-inline-size: 0;
+  }
+  input,
+  textarea {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    padding: var(--space-2);
+    font: inherit;
+  }
+  input:user-invalid,
+  textarea:user-invalid {
+    border-color: var(--color-danger);
+  }
+  button {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  fieldset:disabled input,
+  fieldset:disabled textarea,
+  fieldset:disabled button {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>
