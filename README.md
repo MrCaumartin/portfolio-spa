@@ -23,17 +23,17 @@ The production URL is set via `site` in `astro.config.mjs`. It drives
 canonical links, `og:url`, absolute `hreflang` links and the sitemap
 (`sitemap-index.xml`). Update it there if the domain changes.
 
-## Cloudflare Pages deployment
+## Cloudflare deployment (dev)
 
-1. Connect the repo in Cloudflare Pages (Git integration).
-2. Build command: `pnpm run build`
-3. Build output directory: `dist`
-4. Production branch `main` → www.alexcaumartin.com. Preview branch
-   `develop` → dev.alexcaumartin.com, via a custom domain on the `develop`
-   branch alias (DNS CNAME `dev` → `develop.<project>.pages.dev`).
-5. **Required manual step:** set `PUBLIC_GA_MEASUREMENT_ID` in the Pages
-   **Production** environment variables only — never Preview, so dev sends
-   no analytics. Astro/Vite inlines `import.meta.env.*` at build time.
+The dev site is a Cloudflare Worker (`portfolio-spa`, config in
+`wrangler.jsonc`) serving the static `dist/` assets. Workers Builds deploys
+it from the `develop` branch to dev.alexcaumartin.com.
 
-The dev and `*.pages.dev` hosts are kept out of search engines by
-`public/_headers` (`X-Robots-Tag: noindex`); production doesn't get it.
+- Build command: `pnpm run build`
+- Deploy command: `pnpm exec wrangler deploy`
+- `PUBLIC_GA_MEASUREMENT_ID` is a build variable; leave it unset for dev so
+  no analytics are sent.
+
+`public/_headers` (`X-Robots-Tag: noindex`) keeps dev out of search indexes.
+
+Production isn't set up yet.
