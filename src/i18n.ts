@@ -36,9 +36,9 @@ export interface Strings {
 
 const en: Strings = {
   meta: {
-    title: 'Alex Caumartin — Full Stack Developer',
+    title: 'Alex Caumartin · Full Stack Developer',
     description:
-      'Full stack developer specializing in distributed systems, accelerated by AI tooling.',
+      'Full stack developer. I build distributed systems and SaaS platforms, and I co-founded a multi-tenant CMS that grew to over 800 clients.',
     jobTitle: 'Full Stack Developer',
     locale: 'en_CA',
     imageAlt: 'Alex Caumartin, with fox logo'
@@ -50,45 +50,35 @@ const en: Strings = {
   },
   hero: {
     tagline:
-      'Full stack developer specializing in distributed systems, accelerated by AI tooling.'
+      "I build distributed systems and SaaS platforms. I've been shipping production software for over 10 years."
   },
   about: {
     heading: 'About',
-    p1: "I've spent the last 10+ years building production systems — from early-stage startups through to scale. I co-founded RubberDuck, a multi-tenant SaaS CMS that grew to over 800 clients and a 25-person engineering team.",
-    p2: "Today I'm a Full Stack Developer at Soumission Rénovation, a platform that connects homeowners with verified, licensed contractors for renovation projects. I work across the stack — from distributed-systems architecture to day-to-day feature delivery — and use AI tools to work faster without cutting corners."
+    p1: "I've been building production systems for more than 10 years. I co-founded RubberDuck, a multi-tenant SaaS CMS. It grew to over 800 clients, and the engineering team grew to 25 people.",
+    p2: "Today I'm a full stack developer at Soumission Rénovation, a platform that connects homeowners with verified, licensed contractors for their renovation projects. I work on everything from the architecture of our distributed systems to shipping features. I also use AI tools in my day-to-day work."
   },
   services: {
     heading: 'Services',
     items: [
       {
-        title: 'Backend Development',
+        title: 'Backend & APIs',
         detail:
-          'Design and build reliable, well-tested backend systems and APIs.'
+          'I design the backend services and APIs your product runs on, then build and test them.'
       },
       {
-        title: 'AI Implementation',
+        title: 'AI integration',
         detail:
-          'Integrate LLMs and AI features into real products, from prototype to production.'
+          'Adding LLM features to a product you already have, or connecting your tools and data to AI agents through MCP.'
       },
       {
-        title: 'Technical Consulting',
+        title: 'Technical consulting',
         detail:
-          'Advise on architecture, scaling, and technical decisions before you commit.'
+          "Planning a new system or hitting a scaling problem? We go over the architecture together and I tell you what I'd change."
       },
       {
-        title: 'Database Optimization',
+        title: 'Database optimization',
         detail:
-          'Diagnose slow queries and tune schemas for performance at scale.'
-      },
-      {
-        title: 'API Development',
-        detail:
-          'Build clean, documented APIs that are easy to integrate and maintain.'
-      },
-      {
-        title: 'MCP Integration',
-        detail:
-          'Connect tools and data sources to AI agents using the Model Context Protocol.'
+          'When your database slows down, I find the cause and fix the queries, indexes or schema.'
       }
     ]
   },
@@ -98,26 +88,28 @@ const en: Strings = {
       {
         title: 'Discovery call',
         detail:
-          "A short call to understand what you need and whether it's a fit."
+          "A short call about what you need. If I'm not the right person for it, I'll tell you."
       },
       {
         title: 'Scope',
-        detail: 'A clear proposal: what gets built, timeline, and cost.'
+        detail:
+          "A written proposal: what I'll build, how long it will take and what it will cost."
       },
       {
         title: 'Build',
-        detail: 'Regular check-ins as the work progresses, no black boxes.'
+        detail:
+          'I keep you posted as I go, and you can see where things stand at any point.'
       },
       {
         title: 'Handoff',
         detail:
-          'Working software, documentation, and a clean handoff to your team.'
+          'You get the working software and its documentation, and I walk your team through it.'
       }
     ]
   },
   form: {
     heading: 'Get in touch',
-    comingSoon: 'Coming soon — backend in progress.',
+    comingSoon: 'Coming soon. The backend for this form is still in progress.',
     legend: 'Your details',
     name: 'Name',
     email: 'Email',
@@ -130,9 +122,9 @@ const en: Strings = {
 
 const fr: Strings = {
   meta: {
-    title: 'Alex Caumartin — Développeur full-stack',
+    title: 'Alex Caumartin · Développeur full-stack',
     description:
-      "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA.",
+      "Développeur full-stack. Je bâtis des systèmes distribués et des plateformes SaaS, et j'ai cofondé un CMS multi-locataire qui a dépassé les 800 clients.",
     jobTitle: 'Développeur full-stack',
     locale: 'fr_CA',
     imageAlt: 'Alex Caumartin, avec logo de renard'
@@ -144,45 +136,35 @@ const fr: Strings = {
   },
   hero: {
     tagline:
-      "Développeur full-stack spécialisé en systèmes distribués, avec des flux de travail accélérés par l'IA."
+      'Je bâtis des systèmes distribués et des plateformes SaaS. Ça fait plus de 10 ans que je mets du code en production.'
   },
   about: {
     heading: 'À propos',
-    p1: "J'ai passé les dix dernières années à bâtir des systèmes en production — de jeunes startups jusqu'à la mise à l'échelle. J'ai cofondé RubberDuck, un CMS SaaS multi-locataire qui a grandi jusqu'à plus de 800 clients et une équipe d'ingénierie de 25 personnes.",
-    p2: "Aujourd'hui, je suis développeur full-stack chez Soumission Rénovation, une plateforme qui met en relation les propriétaires avec des entrepreneurs vérifiés et détenteurs d'une licence de la RBQ pour leurs projets de rénovation. Je travaille sur l'ensemble de la pile technologique — de l'architecture de systèmes distribués à la livraison de fonctionnalités au quotidien — et j'utilise des outils d'IA pour aller plus vite sans sacrifier la qualité."
+    p1: "Je bâtis des systèmes en production depuis plus de 10 ans. J'ai cofondé RubberDuck, un CMS SaaS multi-locataire. On a dépassé les 800 clients, et l'équipe d'ingénierie a grandi jusqu'à 25 personnes.",
+    p2: "Aujourd'hui, je suis développeur full-stack chez Soumission Rénovation, une plateforme qui met en relation les propriétaires avec des entrepreneurs vérifiés, détenteurs d'une licence de la RBQ, pour leurs projets de rénovation. Je touche à tout, de l'architecture de nos systèmes distribués jusqu'à la livraison de fonctionnalités. J'utilise aussi des outils d'IA dans mon travail de tous les jours."
   },
   services: {
     heading: 'Services',
     items: [
       {
-        title: 'Développement backend',
+        title: 'Backend et API',
         detail:
-          'Concevoir et développer des systèmes backend et des API fiables et bien testés.'
+          'Je conçois les services backend et les API sur lesquels roule votre produit, puis je les développe et je les teste.'
       },
       {
         title: "Intégration de l'IA",
         detail:
-          'Intégrer des LLM et des fonctionnalités IA dans de vrais produits, du prototype à la production.'
+          'Ajouter des fonctionnalités basées sur des LLM à un produit existant, ou brancher vos outils et vos données à des agents IA avec MCP.'
       },
       {
         title: 'Services-conseils techniques',
         detail:
-          "Conseiller sur l'architecture, la mise à l'échelle et les décisions techniques avant de vous engager."
+          "Vous planifiez un nouveau système ou vous avez un problème de mise à l'échelle? On regarde l'architecture ensemble et je vous dis ce que je changerais."
       },
       {
         title: 'Optimisation de base de données',
         detail:
-          'Diagnostiquer les requêtes lentes et ajuster les schémas pour la performance à grande échelle.'
-      },
-      {
-        title: "Développement d'API",
-        detail:
-          'Développer des API propres et documentées, faciles à intégrer et à maintenir.'
-      },
-      {
-        title: 'Intégration MCP',
-        detail:
-          "Connecter des outils et des sources de données à des agents IA à l'aide du Model Context Protocol."
+          'Quand votre base de données ralentit, je trouve la cause et je corrige les requêtes, les index ou le schéma.'
       }
     ]
   },
@@ -192,28 +174,29 @@ const fr: Strings = {
       {
         title: 'Appel de découverte',
         detail:
-          'Un court appel pour comprendre vos besoins et voir si nous sommes faits pour travailler ensemble.'
+          'Un court appel pour parler de vos besoins. Si je ne suis pas la bonne personne, je vous le dis.'
       },
       {
         title: 'Portée du projet',
         detail:
-          "Une proposition claire : ce qui sera construit, l'échéancier et le coût."
+          'Une proposition écrite : ce que je vais construire, en combien de temps et à quel coût.'
       },
       {
         title: 'Réalisation',
         detail:
-          "Des suivis réguliers pendant l'avancement du travail, sans zones d'ombre."
+          "Je vous tiens au courant en cours de route, et vous pouvez voir où j'en suis en tout temps."
       },
       {
         title: 'Livraison',
         detail:
-          'Un logiciel fonctionnel, la documentation, et une transition propre vers votre équipe.'
+          'Vous recevez le logiciel fonctionnel et sa documentation, et je fais le tour du projet avec votre équipe.'
       }
     ]
   },
   form: {
     heading: 'Me joindre',
-    comingSoon: 'Bientôt disponible — backend en cours de développement.',
+    comingSoon:
+      'Bientôt disponible. Le backend de ce formulaire est encore en développement.',
     legend: 'Vos coordonnées',
     name: 'Nom',
     email: 'Courriel',
