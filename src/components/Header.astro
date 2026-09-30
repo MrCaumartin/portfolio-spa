@@ -1,0 +1,41 @@
+---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { a11y, switcher } = t(Astro.props.lang);
+const speculationRules = {
+  prefetch: [{ urls: [switcher.href], eagerness: 'moderate' }]
+};
+---
+
+<header class="site-header">
+  <nav aria-label={a11y.langNav}>
+    <a href={switcher.href} lang={switcher.lang} hreflang={switcher.lang}>
+      {switcher.label}
+    </a>
+  </nav>
+</header>
+
+<script
+  is:inline
+  type="speculationrules"
+  set:html={JSON.stringify(speculationRules)}
+/>
+<style>
+  .site-header {
+    display: flex;
+    justify-content: flex-end;
+    max-inline-size: 800px;
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-5) 0;
+    font-size: var(--font-size-sm);
+  }
+  .site-header a {
+    color: var(--color-text-muted);
+  }
+  .site-header a:hover {
+    color: var(--color-accent);
+  }
+</style>

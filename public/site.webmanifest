@@ -1,0 +1,11 @@
+{
+  "name": "Alex Caumartin",
+  "short_name": "Alex Caumartin",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.png", "sizes": "460x460", "type": "image/png" }
+  ],
+  "theme_color": "#12141c",
+  "background_color": "#12141c",
+  "display": "browser"
+}

@@ -1,0 +1,56 @@
+---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { heading, steps } = t(Astro.props.lang).process;
+---
+
+<section class="process">
+  <h2>{heading}</h2>
+  <ol class="steps" role="list">
+    {steps.map((step, i) => (
+      <li class="step">
+        <span class="step-index" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <div class="step-body">
+          <h3 class="step-title">{step.title}</h3>
+          <p class="step-detail">{step.detail}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: var(--space-7) 1fr;
+    gap: var(--space-4);
+    border-block-start: 1px solid var(--color-border);
+    padding-block: var(--space-4);
+  }
+  .step:last-child {
+    border-block-end: 1px solid var(--color-border);
+  }
+  .step-index {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent);
+  }
+  .step-title {
+    margin: 0;
+    font-size: var(--font-size-base);
+  }
+  .step-detail {
+    margin-block: var(--space-2) 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>

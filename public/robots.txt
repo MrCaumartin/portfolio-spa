@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.alexcaumartin.com/sitemap-index.xml

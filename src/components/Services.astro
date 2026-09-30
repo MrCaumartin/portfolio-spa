@@ -1,0 +1,44 @@
+---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { heading, items: services } = t(Astro.props.lang).services;
+---
+
+<section class="services">
+  <h2>{heading}</h2>
+  <ul class="services-grid" role="list">
+    {services.map((service) => (
+      <li class="service-cell">
+        <h3 class="service-title">{service.title}</h3>
+        <p class="service-detail">{service.detail}</p>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .services-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    padding: 0;
+    margin: 0;
+  }
+  .service-cell {
+    border-block-start: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4) var(--space-4) 0;
+  }
+  .service-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: var(--font-size-base);
+  }
+  .service-detail {
+    margin-block: var(--space-2) 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>

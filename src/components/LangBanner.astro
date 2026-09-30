@@ -1,0 +1,140 @@
+---
+import { langBanner, t, type Lang } from '../i18n';
+
+interface Props {
+  target: Lang;
+}
+const { target } = Astro.props;
+const banner = langBanner[target];
+// Same name as the header switcher on the other-language page.
+const { switcher } = t(target === 'en' ? 'fr' : 'en');
+---
+
+<aside
+  id="lang-banner"
+  class="lang-banner"
+  lang={target}
+  aria-label={banner.label}
+  data-target={target}
+  popover="manual"
+  hidden
+>
+  <p>
+    {banner.text}{' '}
+    <a href={switcher.href} hreflang={target}>
+      {switcher.label}
+    </a>{' '}
+    <span aria-hidden="true">→</span>
+  </p>
+  <button type="button" aria-label={banner.close}>
+    <span aria-hidden="true">×</span>
+  </button>
+</aside>
+
+<script is:inline>
+  (() => {
+    const el = document.getElementById('lang-banner');
+    const target = el.dataset.target;
+    const key = `lang-banner-dismissed-${target}`;
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(key) === '1';
+    } catch {
+      /* storage unavailable */
+    }
+    const langs = navigator.languages?.length
+      ? navigator.languages
+      : [navigator.language];
+    const prefersFr = langs.some((l) => l.toLowerCase().startsWith('fr'));
+    if (dismissed || prefersFr !== (target === 'fr')) return;
+    const canPopover = typeof HTMLElement.prototype.showPopover === 'function';
+    // Reserve room at the page end so the banner never covers the footer.
+    const ro = new ResizeObserver(() =>
+      document.body.style.setProperty(
+        '--lang-banner-size',
+        `${el.offsetHeight}px`
+      )
+    );
+    el.hidden = false;
+    if (canPopover) el.showPopover();
+    ro.observe(el);
+    el.querySelector('button').addEventListener('click', () => {
+      const hadFocus = el.contains(document.activeElement);
+      if (canPopover) el.hidePopover();
+      el.hidden = true;
+      ro.disconnect();
+      if (hadFocus) document.getElementById('content')?.focus();
+      try {
+        localStorage.setItem(key, '1');
+      } catch {
+        /* storage unavailable */
+      }
+    });
+  })();
+</script>
+
+<style>
+  /* Also overrides the UA [popover] defaults. */
+  .lang-banner {
+    position: fixed;
+    inset: auto var(--space-4) var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    inline-size: auto;
+    block-size: auto;
+    max-inline-size: 480px;
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-4);
+    overflow: visible;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+  }
+  /* Top layer needs no z-index; only the non-popover fallback does. */
+  @supports not selector(:popover-open) {
+    .lang-banner {
+      z-index: 50;
+    }
+  }
+  .lang-banner[hidden] {
+    display: none;
+  }
+  .lang-banner p {
+    flex: 1;
+    margin: 0;
+  }
+  .lang-banner a {
+    white-space: nowrap;
+  }
+  .lang-banner button {
+    flex: none;
+    min-inline-size: 2rem;
+    min-block-size: 2rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--font-size-lg);
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lang-banner button:hover {
+    border-color: var(--color-accent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lang-banner {
+      animation: banner-in 0.3s ease-out;
+    }
+  }
+  @keyframes banner-in {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-4));
+    }
+  }
+</style>

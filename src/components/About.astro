@@ -1,0 +1,26 @@
+---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { about: copy } = t(Astro.props.lang);
+---
+
+<section class="about">
+  <h2>{copy.heading}</h2>
+  <p>{copy.p1}</p>
+  <p class="muted">{copy.p2}</p>
+</section>
+
+<style>
+  .about p {
+    max-inline-size: 65ch;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+  }
+  .about p.muted {
+    color: var(--color-text-muted);
+  }
+</style>

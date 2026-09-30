@@ -1,0 +1,117 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+import { languages, localePaths, t, type Lang } from '../i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  noindex?: boolean;
+}
+
+const { title, description, lang, noindex = false } = Astro.props;
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const { meta, a11y } = t(lang);
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL('/og-image.png', site).href;
+const alternates = languages.map((l) => ({
+  hreflang: t(l).meta.locale.replace('_', '-'),
+  href: new URL(localePaths[l], site).href
+}));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site.origin}/#person`,
+      name: 'Alex Caumartin',
+      jobTitle: meta.jobTitle,
+      url: new URL('/', site).href,
+      sameAs: [
+        'https://github.com/MrCaumartin',
+        'https://www.linkedin.com/in/alex-caumartin-77616b127/'
+      ]
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.origin}/#website`,
+      name: 'Alex Caumartin',
+      url: new URL('/', site).href,
+      inLanguage: ['en-CA', 'fr-CA'],
+      publisher: { '@id': `${site.origin}/#person` }
+    }
+  ]
+};
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#12141c" />
+    <meta name="color-scheme" content="dark" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {!noindex &&
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+      ))}
+    {!noindex && (
+      <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+    )}
+    {!noindex && (
+      <>
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Alex Caumartin" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:locale" content={meta.locale} />
+        {languages
+          .filter((l) => l !== lang)
+          .map((l) => (
+            <meta property="og:locale:alternate" content={t(l).meta.locale} />
+          ))}
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={meta.imageAlt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content={meta.imageAlt} />
+      </>
+    )}
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <Font cssVariable="--font-sans" preload={[{ weight: '800' }]} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link visually-hidden" href="#content">
+      {a11y.skipLink}
+    </a>
+    <slot />
+    {gaId && (
+      <>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+        ></script>
+        <script is:inline define:vars={{ gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          /* eslint-disable prefer-rest-params -- gtag needs arguments */
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
+  </body>
+</html>
