@@ -8,7 +8,7 @@
   --color-surface: #191c26;
   --color-text: #edeae2;
   --color-text-muted: #8b90a0;
-  --color-accent: #35c9b8;
+  --color-accent: #e8a33d;
   --color-border: #2a2e3a;
   --color-danger: #f07178;
 
@@ -30,4 +30,5 @@
 
   /* Shape */
   --radius-sm: 2px;
+  --radius-md: 12px;
 }
