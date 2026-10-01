@@ -11,6 +11,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.7.4
         version: 3.7.4
+      '@mrcaumartin/lead-sdk':
+        specifier: ^0.0.0
+        version: 0.0.0
       astro:
         specifier: ^7.3.5
         version: 7.3.5(@types/node@24.19.0)(yaml@2.9.1)
@@ -1111,6 +1114,9 @@ packages:
 
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
+
+  '@mrcaumartin/lead-sdk@0.0.0':
+    resolution: {integrity: sha512-c8KF3JNraOCSOqvTsC2ov+xfr5Kg26l+mQb5Vd8OLME93n6YR9SyGBIoMV/+DTNvJPD3W0/nI72y3bpjEX6Zmw==, tarball: https://npm.pkg.github.com/download/@mrcaumartin/lead-sdk/0.0.0/118a567ce516a72ba4f6b1d1dbce5019ae2d0b89}
 
   '@napi-rs/wasm-runtime@1.2.4':
     resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
@@ -3541,6 +3547,8 @@ snapshots:
       keyv: 5.6.0
 
   '@keyv/serialize@1.1.1': {}
+
+  '@mrcaumartin/lead-sdk@0.0.0': {}
 
   '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
     dependencies:

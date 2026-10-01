@@ -29,10 +29,16 @@ The dev site is a Cloudflare Worker (`portfolio-spa`, config in
 `wrangler.jsonc`) serving the static `dist/` assets. Workers Builds deploys
 it from the `develop` branch to dev.alexcaumartin.com.
 
-- Build command: `pnpm run build`
+- Build command: `pnpm config set --location user //npm.pkg.github.com/:_authToken "$NPM_TOKEN" && pnpm install --frozen-lockfile && pnpm run build`
+  (`@mrcaumartin/lead-sdk` is on GitHub Packages; the token goes in the
+  user-level config because pnpm may ignore env tokens in the project `.npmrc`)
+- Build secret `NPM_TOKEN`: GitHub token with `read:packages` on the
+  MrCaumartin account.
 - Deploy command: `pnpm exec wrangler deploy`
 - `PUBLIC_GA_MEASUREMENT_ID` is a build variable; leave it unset for dev so
   no analytics are sent.
+- `PUBLIC_LEAD_BASE_URL` / `PUBLIC_LEAD_SITE_KEY` enable the lead SDK; leave
+  both unset for dev so it never talks to production.
 
 `public/_headers` (`X-Robots-Tag: noindex`) keeps dev out of search indexes.
 

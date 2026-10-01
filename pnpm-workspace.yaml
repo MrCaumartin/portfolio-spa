@@ -3,3 +3,4 @@ allowBuilds:
   workerd: true
 minimumReleaseAgeExclude:
   - wrangler@4.143.0
+  - '@mrcaumartin/lead-sdk@0.0.0'
