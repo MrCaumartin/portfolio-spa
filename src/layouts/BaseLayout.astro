@@ -96,6 +96,15 @@ const jsonLd = {
       {a11y.skipLink}
     </a>
     <slot />
+    <script>
+      const baseUrl = import.meta.env.PUBLIC_LEAD_BASE_URL;
+      const apiKey = import.meta.env.PUBLIC_LEAD_SITE_KEY;
+      if (baseUrl && apiKey) {
+        void import('@mrcaumartin/lead-sdk').then(({ init }) =>
+          init({ baseUrl, apiKey })
+        );
+      }
+    </script>
     {gaId && (
       <>
         <script

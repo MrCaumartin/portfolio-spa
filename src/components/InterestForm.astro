@@ -5,16 +5,31 @@ interface Props {
   lang: Lang;
 }
 const { form: copy } = t(Astro.props.lang);
+const enabled = Boolean(
+  import.meta.env.PUBLIC_LEAD_BASE_URL && import.meta.env.PUBLIC_LEAD_SITE_KEY
+);
 ---
 
 <section class="interest">
   <h2>{copy.heading}</h2>
   <div class="panel">
-    <p id="coming-soon" class="coming-soon">
-      {copy.comingSoon}
-    </p>
-    <form class="interest-form" novalidate>
-      <fieldset disabled aria-describedby="coming-soon">
+    {!enabled && (
+      <p id="coming-soon" class="coming-soon">
+        {copy.comingSoon}
+      </p>
+    )}
+    <form
+      class="interest-form"
+      novalidate={!enabled}
+      data-sent={copy.sent}
+      data-rate-limited={copy.rateLimited}
+      data-invalid={copy.invalid}
+      data-error={copy.error}
+    >
+      <fieldset
+        disabled={!enabled}
+        aria-describedby={!enabled ? 'coming-soon' : undefined}
+      >
         <legend class="visually-hidden">{copy.legend}</legend>
 
         <label for="name-input">{copy.name}</label>
@@ -45,9 +60,48 @@ const { form: copy } = t(Astro.props.lang);
 
         <button type="submit">{copy.send}</button>
       </fieldset>
+      <p class="status" role="status"></p>
     </form>
   </div>
 </section>
+
+<script>
+  const baseUrl = import.meta.env.PUBLIC_LEAD_BASE_URL;
+  const apiKey = import.meta.env.PUBLIC_LEAD_SITE_KEY;
+  const form = document.querySelector<HTMLFormElement>('.interest-form');
+  if (baseUrl && apiKey && form) {
+    const status = form.querySelector<HTMLElement>('.status')!;
+    const button = form.querySelector<HTMLButtonElement>('button')!;
+    const messages: Record<number, string | undefined> = {
+      429: form.dataset.rateLimited,
+      422: form.dataset.invalid
+    };
+    const sdk = import('@mrcaumartin/lead-sdk');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      button.disabled = true;
+      status.textContent = '';
+      try {
+        const { init } = await sdk;
+        await init({ baseUrl, apiKey }).submitForm({
+          name: String(data.get('name')),
+          email: String(data.get('email')),
+          message: String(data.get('message'))
+        });
+        form.reset();
+        status.textContent = form.dataset.sent!;
+      } catch (error) {
+        const code = (error as { status?: number }).status ?? 0;
+        status.textContent = messages[code] ?? form.dataset.error!;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>
 
 <style>
   .panel {
@@ -81,6 +135,13 @@ const { form: copy } = t(Astro.props.lang);
   input:user-invalid,
   textarea:user-invalid {
     border-color: var(--color-danger);
+  }
+  .status {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-sm);
+  }
+  .status:empty {
+    display: none;
   }
   button {
     align-self: flex-start;
