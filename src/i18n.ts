@@ -29,6 +29,10 @@ export interface Strings {
     email: string;
     message: string;
     send: string;
+    sent: string;
+    rateLimited: string;
+    invalid: string;
+    error: string;
   };
   a11y: { skipLink: string; langNav: string };
   switcher: { href: string; label: string; lang: Lang };
@@ -122,7 +126,11 @@ const en: Strings = {
     name: 'Name',
     email: 'Email',
     message: 'Message',
-    send: 'Send'
+    send: 'Send',
+    sent: 'Thanks! Your message was sent.',
+    rateLimited: 'Too many submissions, please try again later.',
+    invalid: 'Please check your details and try again.',
+    error: 'Something went wrong. Please try again.'
   },
   a11y: { skipLink: 'Skip to main content', langNav: 'Language' },
   switcher: { href: '/fr/', label: 'Français', lang: 'fr' }
@@ -218,7 +226,11 @@ const fr: Strings = {
     name: 'Nom',
     email: 'Courriel',
     message: 'Message',
-    send: 'Envoyer'
+    send: 'Envoyer',
+    sent: 'Merci ! Votre message a été envoyé.',
+    rateLimited: 'Trop d’envois, veuillez réessayer plus tard.',
+    invalid: 'Veuillez vérifier vos coordonnées et réessayer.',
+    error: 'Une erreur est survenue. Veuillez réessayer.'
   },
   a11y: { skipLink: 'Passer au contenu principal', langNav: 'Langue' },
   switcher: { href: '/', label: 'English', lang: 'en' }
