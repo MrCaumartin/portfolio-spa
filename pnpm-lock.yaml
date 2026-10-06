@@ -1116,7 +1116,7 @@ packages:
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
   '@mrcaumartin/lead-sdk@0.0.0':
-    resolution: {integrity: sha512-yTA/fUrCLzxa3+XcIH/8O3TX3uFasWxTncaSEJGXadBk3BCM5AG8/BOi/sRPOoRArwtVjHFBTqF3xCXJSdDw3A==, tarball: https://npm.pkg.github.com/download/@mrcaumartin/lead-sdk/0.0.0/f85ae980a41a86d353a3271c5726e4019e2a82e3}
+    resolution: {integrity: sha512-XyjDEQKTLzIP/DIDnA3cNsyxUAXJWSpJUKK0sZrI+RPGAeUnrt9ZN+aAZuD4acGg5VVMq81ocYonpXXfYSk7Ag==, tarball: https://npm.pkg.github.com/download/@mrcaumartin/lead-sdk/0.0.0/955826bd42eabfc67108cac3267bec132e20afe0}
 
   '@napi-rs/wasm-runtime@1.2.4':
     resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
