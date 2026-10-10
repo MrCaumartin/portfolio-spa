@@ -12,8 +12,8 @@ importers:
         specifier: ^3.7.4
         version: 3.7.4
       '@mrcaumartin/lead-sdk':
-        specifier: ^0.0.0
-        version: 0.0.0
+        specifier: ^0.0.1
+        version: 0.0.1
       astro:
         specifier: ^7.3.5
         version: 7.3.5(@types/node@24.19.0)(yaml@2.9.1)
@@ -1115,8 +1115,8 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@mrcaumartin/lead-sdk@0.0.0':
-    resolution: {integrity: sha512-XyjDEQKTLzIP/DIDnA3cNsyxUAXJWSpJUKK0sZrI+RPGAeUnrt9ZN+aAZuD4acGg5VVMq81ocYonpXXfYSk7Ag==, tarball: https://npm.pkg.github.com/download/@mrcaumartin/lead-sdk/0.0.0/955826bd42eabfc67108cac3267bec132e20afe0}
+  '@mrcaumartin/lead-sdk@0.0.1':
+    resolution: {integrity: sha512-phd9JWWHhjc9nbzq+U27S6Ncx/utXOAl1g5zFwVk47ZVxLCJzqDjz0SlvkcFNdI+rDtMklb2rYSgpUCbGNVCew==, tarball: https://npm.pkg.github.com/download/@mrcaumartin/lead-sdk/0.0.1/b2930013fa0f8f99b6727708e5898b5f90a8442f}
 
   '@napi-rs/wasm-runtime@1.2.4':
     resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
@@ -3548,7 +3548,7 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@mrcaumartin/lead-sdk@0.0.0': {}
+  '@mrcaumartin/lead-sdk@0.0.1': {}
 
   '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
     dependencies:
