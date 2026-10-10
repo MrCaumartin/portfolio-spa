@@ -39,6 +39,9 @@ it from the `develop` branch to dev.alexcaumartin.com.
   no analytics are sent.
 - `PUBLIC_LEAD_BASE_URL` / `PUBLIC_LEAD_SITE_KEY` enable the lead SDK; leave
   both unset for dev so it never talks to production.
+  `PUBLIC_LEAD_SITE_KEY` is the portfolio Application's site key from auth's
+  platform console (not a gateway `SITE_KEYS` entry); the Application needs
+  the `leads:submit` permission.
 
 `public/_headers` (`X-Robots-Tag: noindex`) keeps dev out of search indexes.
 
